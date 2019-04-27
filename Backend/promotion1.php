@@ -228,7 +228,7 @@
                             <button type="button" class="close" data-dismiss="alert">×</button>
                             <h4>Success</h4>
                             The operation completed successfully</div>';
-                              $to = "52847468@globfone.com/send-text/";
+                            $to = "52847468@globfone.com/send-text/";
 $from = "mohamedchakib.hajji@esprit.tn";
 $message = "Casa Sport\nCher Client Des Nouveaux Promotions Sont Disponnibles";
 $headers = "From: $from\n";

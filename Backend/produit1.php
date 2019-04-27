@@ -30,7 +30,7 @@ include "core/produitP.php"; ?>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li class="dropdown">
-                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Chekib Elhajji<i class="caret"></i>
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <f class="icon-user"></i> Chekib Elhajji<i class="caret"></i>
 
                                 </a>
                                 <ul class="dropdown-menu">
@@ -238,7 +238,7 @@ include "core/produitP.php"; ?>
  $header.='Content-Type:text/html; charset="uft-8"'."\n";
  $header.='Content-Transfer-Encoding: 8bit';
  $message="Cher Client, \n Un Nouveau Produit Est Disponnible Dans Notre Site Web Et Dans Notre Boutique";
- mail("mohamedchakib.hajji@esprit.tn", "Nouveau Produit !", $message, $header); 
+ mail("boutiquecasasport@gmail.com", "Nouveau Produit !", $message, $header); 
                                     }
 
                                     ?>
@@ -256,7 +256,7 @@ include "core/produitP.php"; ?>
                                           <div class="control-group">
                                           <label class="control-label" for="typeahead">Reference du produit (Ex : #9999999)</label>
                                           <div class="controls">
-                                            <input type="text" class="span6"   data-provide="typeahead" data-items="4" name="Referenceproduit" required>
+                                            <input type="number" class="span6"   data-provide="typeahead" data-items="4" name="Referenceproduit" required>
                                             
                                           </div>
                                         </div>
@@ -299,20 +299,18 @@ include "core/produitP.php"; ?>
                                           </div>
                                         </div>
                                         <div class="control-group">
-                                          <label class="control-label" for="date01">Publier Le</label>
+                                          <label class="control-label" for="date01"></label>
                                           <div class="controls">
                                             <p class="help-block"></p>
-                                             <td><input type="date" name="Datedepublication" required ></td>
+                                             <td><input type="date" name="Datedepublication" value='<?php echo date('Y-m-d');?>' ></td>
                                           </div>
                                         </div>
                                        
                                         <div class="control-group">
-                                          <label class="control-label" for="optionsCheckbox">Check</label>
+                                          <label class="control-label">Quantité</label>
                                           <div class="controls">
-                                            <label class="uniform">
-                                              <input class="uniform_on" type="checkbox" id="optionsCheckbox" value="1" name="New">
-                                              Cochez Si C'est Un Nouveau Produit
-                                            </label>
+                                            <p class="help-block"></p>
+                                             <td><input type="number" name="quantite" id="s2"></td>
                                           </div>
                                         </div>
                                   
@@ -330,7 +328,7 @@ include "core/produitP.php"; ?>
                                         <div class="control-group">
                                           <label class="control-label" for="fileInput">Photo Du Produit</label>
                                           <div class="controls">
-                                            <input class="input-file uniform_on" id="fileInput" type="file" name="file1" >
+                                            <input class="input-file uniform_on" id="fileInput" type="file" name="file1" accept="image/*">
                                           </div>
                                         </div>
                                         <div class="control-group">
@@ -360,6 +358,7 @@ include "core/produitP.php"; ?>
                                      Modifier Produit</div>
                                
                             </div>
+
                             <div class="block-content collapse in">
                                 <div class="span12">
                                     <?php 
@@ -398,6 +397,8 @@ foreach($listeProduit as $row){
                                             <p class="help-block">Start typing to activate auto complete!</p>
                                           </div>
                                           <br />
+                                            
+
                                           <div class="control-group">
                                           <label class="control-label" for="typeahead">Nom Du Produit</label>
                                           <div class="controls">
@@ -444,7 +445,13 @@ foreach($listeProduit as $row){
                                              <td><input type="date" name="Datedepublication"></td>
                                           </div>
                                         </div>
-
+                                          <div class="control-group">
+                                          <label class="control-label">Quantité</label>
+                                          <div class="controls">
+                                            <p class="help-block"></p>
+                                             <td><input type="number" name="quantite" id="s2" ></td>
+                                          </div>
+                                        </div>
                                         <div class="control-group">
                                           <label class="control-label" for="multiSelect">Boutiques</label>
                                           <div class="controls">
@@ -463,8 +470,8 @@ foreach($listeProduit as $row){
                                         </div>
 
                                         <div class="form-actions">
-                                          <button type="submit" onclick="envoyermodifier();" class="btn btn-primary" name="modifier" value="modifier">Modifier</button>
-                                          <button type="reset" class="btn">Annuler</button>
+                                          <button type="submit"  class="btn btn-primary" name="modifier" value="modifier">Modifier</button>
+                                          <button type="reset" class="btn" >Annuler</button>
                                         </div>
                                       </fieldset>
                                     </form>

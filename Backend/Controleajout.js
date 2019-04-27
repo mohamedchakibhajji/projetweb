@@ -45,10 +45,17 @@ function verifsolde()
 
 var qte =  parseInt(document.getElementById('s1').value)
 if(qte < 0) {
-  alert('Solde Negatif')
+  alert('Prix Negatif')
   return false;
 
 }
 
+ var quantite =  parseInt(document.getElementById('s2').value)
+if(quantite < 0) {
+  alert('Quantité Negatif')
+  return false;
+}
 
 }
+
+
