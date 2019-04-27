@@ -80,7 +80,7 @@
 								</ul>
 							</li>
 							<li>
-								<a href="product.html">Matériel</a>
+								<a href="materiel.php">Matériel</a>
 							</li>
 
 							<li class="sale-noti">
@@ -401,13 +401,13 @@
 							</li>
 
 							<li class="p-t-4">
-								<a href="#" class="s-text13">
+								<a href="materiel.php" class="s-text13">
 									Matériel
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="#" class="s-text13">
+								<a href="accessoires.php" class="s-text13">
 									Accesoires
 								</a>
 							</li>
@@ -441,48 +441,7 @@
 							</div>
 						</div>
 
-						<div class="filter-color p-t-22 p-b-50 bo3">
-							<div class="m-text15 p-b-12">
-								Color
-							</div>
-
-							<ul class="flex-w">
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter1" type="checkbox" name="color-filter1">
-									<label class="color-filter color-filter1" for="color-filter1"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter2" type="checkbox" name="color-filter2">
-									<label class="color-filter color-filter2" for="color-filter2"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter3" type="checkbox" name="color-filter3">
-									<label class="color-filter color-filter3" for="color-filter3"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter4" type="checkbox" name="color-filter4">
-									<label class="color-filter color-filter4" for="color-filter4"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter5" type="checkbox" name="color-filter5">
-									<label class="color-filter color-filter5" for="color-filter5"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter6" type="checkbox" name="color-filter6">
-									<label class="color-filter color-filter6" for="color-filter6"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter7" type="checkbox" name="color-filter7">
-									<label class="color-filter color-filter7" for="color-filter7"></label>
-								</li>
-							</ul>
-						</div>
+						
 
 						<div class="search-product pos-relative bo4 of-hidden">
 							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
@@ -531,45 +490,62 @@ if (isset($_POST['rechercher']) and ($_POST["sorting"]== "Price: low to high")){
 								
 							<!-- Block2 -->
 
-<?PHP
-foreach($liste as $row){
+
+	                       
+	                       	<?PHP
+foreach($listeProduit as $row){
 	?>    
-	                       <div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-                                      <?PHP echo "<img src='../Backend/image/".$row["photodeproduit"]."' height='360px' width='15px' >";    ?>  
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
+						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+		<div class="block2">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative"  >
+                                      <?= "<img src='../Backend/image/".$row["photodeproduit"]."' height='350 px'   >";    ?>    
+									   <div class="block2-overlay trans-0-4">
+                    <a href="addwishlist.php?id=<?= $row['Referenceproduit'];?>"class="addPanier block2-btn-addwishlist hov-pointer trans-0-4">
+                      <i class="addPanier icon-wishlist icon_heart_alt" href="addwishlist.php?id=<?= $row['Referenceproduit'];?>" aria-hidden="true"></i>
+                      <i class="addPanier icon-wishlist icon_heart dis-none" 
+                      href="addwishlist.php?id=<?= $row['Referenceproduit'];?>"aria-hidden="true"></i>
+                    </a>
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
+											<a   class="addPanier flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" name "addPaniers"  href="addpanier.php?id=<?= $row['Referenceproduit'];?>" >Add to Cart</a>
 										</div>
 									</div>
+								</div>
 								</div>
 
 								<div class="block2-txt p-t-20">
 									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										<td><?PHP echo $row['Nomproduit'] ; ?></td>
+									<?PHP echo $row['Nomproduit'] ; ?>
 									</a>
-
 									<span class="block2-price m-text6 p-r-5">
-										<td><?PHP echo $row['prix']; ?> DT</td>
+									<prix>	<?PHP echo $row['prix']; ?> </prix>DT
 									</span>
+   
+										<?php $listepromotion=$Produit1P->modifierPrix();?>
+                             	<?PHP
+foreach($listepromotion as $row){
+	?>   
+									<span class="block2-newprice m-text8 p-r-5">
+										
+    
+										<?PHP echo $row['prix']-($row['solde']/100)*$row['prix']; ?> DT
+
+									</span>
+    	<?PHP
+}
+?>
+	</div>
+							
+								
 								</div>
 
-							</div>
-
+	
 							<?PHP
 }
 ?>
-
+                         
 						   </div>
-					    </div>
 
 					<!-- Pagination -->
 					<div class="pagination flex-m flex-w p-t-26">

@@ -1,3 +1,6 @@
+<?php
+require "_header.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,10 +75,10 @@
 				<div class="wrap_menu">
 					<nav class="menu">
 						<ul class="main_menu">
-							<li class="sale-noti">
-								<a href="index.html" >Vêtement</a>
+							<li class="sale-noti" >
+								<a href="index.html">Vêtement</a>
 								<ul class="sub_menu">
-									<li class="sale-noti"><a href="produithomme.php">Homme</a></li>
+									<li class="sale-noti" ><a href="produithomme.php">Homme</a></li>
 									<li><a href="produitfemme.php">Femme</a></li>
 								</ul>
 							</li>
@@ -84,7 +87,7 @@
 							</li>
 
 							<li>
-								<a href="cart.html">Panier</a>
+								<a href="cart.php">Panier</a>
 							</li>
 
 							<li>
@@ -165,7 +168,7 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										View Cart
 									</a>
 								</div>
@@ -263,7 +266,7 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										View Cart
 									</a>
 								</div>
@@ -341,7 +344,7 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="cart.html">Features</a>
+						<a href="cart.php">Features</a>
 					</li>
 
 					<li class="item-menu-mobile">
@@ -366,7 +369,7 @@
 			Homme
 		</h2>
 		<p class="m-text13 t-center">
-			 Collection 2019
+		 Collection 2019
 		</p>
 	</section>
 
@@ -424,61 +427,14 @@
 							</div>
 
 							<div class="flex-sb-m flex-w p-t-16">
-								<div class="w-size11">
-									<!-- Button -->
-									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
-										Filter
-									</button>
-								</div>
 
 								<div class="s-text3 p-t-10 p-b-10">
-									Range: $<span id="value-lower">610</span> - $<span id="value-upper">980</span>
+									Range: <span id="value-lower">610</span> DT - <span id="value-upper">980</span> DT
 								</div>
 							</div>
 						</div>
 
-						<div class="filter-color p-t-22 p-b-50 bo3">
-							<div class="m-text15 p-b-12">
-								Color
-							</div>
-
-							<ul class="flex-w">
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter1" type="checkbox" name="color-filter1">
-									<label class="color-filter color-filter1" for="color-filter1"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter2" type="checkbox" name="color-filter2">
-									<label class="color-filter color-filter2" for="color-filter2"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter3" type="checkbox" name="color-filter3">
-									<label class="color-filter color-filter3" for="color-filter3"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter4" type="checkbox" name="color-filter4">
-									<label class="color-filter color-filter4" for="color-filter4"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter5" type="checkbox" name="color-filter5">
-									<label class="color-filter color-filter5" for="color-filter5"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter6" type="checkbox" name="color-filter6">
-									<label class="color-filter color-filter6" for="color-filter6"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter7" type="checkbox" name="color-filter7">
-									<label class="color-filter color-filter7" for="color-filter7"></label>
-								</li>
-							</ul>
-						</div>
+				
 
 						<div class="search-product pos-relative bo4 of-hidden">
 							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
@@ -497,17 +453,14 @@
 						<div class="flex-w">
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
 								<select class="selection-2" name="sorting" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-									<option value="produithomme.php">Default Sorting</option>
-									<option value="new.php">New</option>
-									<option  >Price: low to high</option>
-									<option  value="/Frontend/views/trierdecroi.php">Price: high to low</option>
+									<option value="/Frontend/produithomme.php">Default Sorting</option>
+									<option value="/Frontend/new.php">New</option>
+									<option  value="/Frontend/tricroissant.php" >Price: low to high</option>
+									<option  value="/Frontend/trierdecroi.php">Price: high to low</option>
 								</select>
 							</div>
 						</div>
                          </form>
-						<span class="s-text8 p-t-5 p-b-5">
-							Showing 1–12 of 16 results
-						</span>
 					</div>
   
 					<!-- Product -->
@@ -515,10 +468,10 @@
   <?PHP
 include "../Backend/core/produitP.php";
 $Produit1P=new ProduitP();
-$listeProduit=$Produit1P->trierProduit();
-$listepromotion=$Produit1P->modifierPrix();
+$listeProduit=$Produit1P->trierproducthomme();
+
 ?>                  
-						<div class="row">
+							<div class="row">
 
 								
 							<!-- Block2 -->
@@ -530,43 +483,58 @@ foreach($listeProduit as $row){
 	?>    
 						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 		<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew"  >
+								<div class="block2-img wrap-pic-w of-hidden pos-relative"  >
                                       <?= "<img src='../Backend/image/".$row["photodeproduit"]."' height='350 px'   >";    ?>    
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
+									   <div class="block2-overlay trans-0-4">
+                    <a href="addwishlist.php?id=<?= $row['Referenceproduit'];?>"class="addPanier block2-btn-addwishlist hov-pointer trans-0-4">
+                      <i class="addPanier icon-wishlist icon_heart_alt" href="addwishlist.php?id=<?= $row['Referenceproduit'];?>" aria-hidden="true"></i>
+                      <i class="addPanier icon-wishlist icon_heart dis-none" 
+                      href="addwishlist.php?id=<?= $row['Referenceproduit'];?>"aria-hidden="true"></i>
+                    </a>
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
+											<a   class="addPanier flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" name "addPaniers"  href="addpanier.php?id=<?= $row['Referenceproduit'];?>" >Add to Cart</a>
 										</div>
 									</div>
+								</div>
+								</div>
 
 								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+										<input type="hidden" name="Referenceproduit" value="<?PHP echo $row['Referenceproduit'];  ?>">
+									<a href="product-detail2.php?ref=<?= $row['Referenceproduit']; ?>" class="block2-name dis-block s-text3 p-b-5">
 									<?PHP echo $row['Nomproduit'] ; ?>
 									</a>
-									<span class="block2-price m-text6 p-r-5">
-										<?PHP echo $row['prix']; ?> DT
-									</span>
- <?PHP
-foreach($listepromotion as $row){
-	?>    
 									
-                             
-									<span class="block2-newprice m-text8 p-r-5">
+   
+										<?php $listepromotion=$Produit1P->modifierPrixs($row['Referenceproduit']);?>
+                             	<?PHP
+                             	$i=$row['prix'];
+                             	$reference=$row['Referenceproduit'];
+                             	if($listepromotion->rowCount()==0){
+                             		echo '<span class="block2-price m-text6 p-r-5">
+									<prix>'.$i.'</prix>DT
+									</span>';	
+                             	}
+foreach($listepromotion as $row){
+	?>   
+	<?php
+echo '<del class="block2-price m-text6 p-r-5 block2-labelsale">
+									<prix>'.$i.'</prix>DT
+									</del>';
+									?>
+	<span class="block2-newprice m-text8 p-r-5">
+
 										<?PHP echo $row['prix']-($row['solde']/100)*$row['prix']; ?> DT
+
 									</span>
-										<?PHP
+									
+    	<?PHP
 }
-	?>    
+?>
 	</div>
-								</div>
-								</div>
+							
+								
 								</div>
 
 	
@@ -575,11 +543,6 @@ foreach($listepromotion as $row){
 ?>
                          
 						   </div>
-
-
-						   </div>
-					    </div>
-
 
 					<!-- Pagination -->
 					<div class="pagination flex-m flex-w p-t-26">
@@ -630,13 +593,13 @@ foreach($listepromotion as $row){
 					</li>
 
 					<li class="p-b-9">
-						<a href="femme.html" class="s-text7">
+						<a href="produitfemme.php" class="s-text7">
 							Femme
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="materiel.html" class="s-text7">
+						<a href="materiel.php" class="s-text7">
 							Matériel
 						</a>
 					</li>
@@ -683,6 +646,8 @@ foreach($listepromotion as $row){
 
 
 
+
+
 	<!-- Back to top -->
 	<div class="btn-back-to-top bg0-hov" id="myBtn">
 		<span class="symbol-btn-back-to-top">
@@ -722,6 +687,7 @@ foreach($listepromotion as $row){
 					
 				})
 			})
+
 		})
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
@@ -765,10 +731,10 @@ foreach($listepromotion as $row){
 	    var filterBar = document.getElementById('filter-bar');
 
 	    noUiSlider.create(filterBar, {
-	        start: [ 50, 500 ],
+	        start: [ 0, 500 ],
 	        connect: true,
 	        range: {
-	            'min': 50,
+	            'min': 0,
 	            'max': 500
 	        }
 	    });
@@ -784,6 +750,8 @@ foreach($listepromotion as $row){
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 
 </body>
 </html>

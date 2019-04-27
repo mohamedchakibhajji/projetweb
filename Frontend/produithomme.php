@@ -1,3 +1,6 @@
+<?php
+require "_header.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,11 +83,11 @@
 								</ul>
 							</li>
 							<li>
-								<a href="product.html">Matériel</a>
+								<a href="materiel.php">Matériel</a>
 							</li>
 
 							<li>
-								<a href="cart.html">Panier</a>
+								<a href="cart.php">Panier</a>
 							</li>
 
 							<li>
@@ -165,7 +168,7 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										View Cart
 									</a>
 								</div>
@@ -263,7 +266,7 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										View Cart
 									</a>
 								</div>
@@ -341,7 +344,7 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="cart.html">Features</a>
+						<a href="cart.php">Features</a>
 					</li>
 
 					<li class="item-menu-mobile">
@@ -397,13 +400,13 @@
 							</li>
 
 							<li class="p-t-4">
-								<a href="#" class="s-text13">
+								<a href="materiel.php" class="s-text13">
 									Matériel
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="#" class="s-text13">
+								<a href="accessoires.php" class="s-text13">
 									Accesoires
 								</a>
 							</li>
@@ -465,8 +468,8 @@
   <?PHP
 include "../Backend/core/produitP.php";
 $Produit1P=new ProduitP();
-$listeProduit=$Produit1P->afficherProduits();
-$listepromotion=$Produit1P->modifierPrix();
+$listeProduit=$Produit1P->produithomme();
+
 ?>                  
 							<div class="row">
 
@@ -480,43 +483,58 @@ foreach($listeProduit as $row){
 	?>    
 						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 		<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew"  >
+								<div class="block2-img wrap-pic-w of-hidden pos-relative"  >
                                       <?= "<img src='../Backend/image/".$row["photodeproduit"]."' height='350 px'   >";    ?>    
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
+									   <div class="block2-overlay trans-0-4">
+                    <a href="addwishlist.php?id=<?= $row['Referenceproduit'];?>"class="addPanier block2-btn-addwishlist hov-pointer trans-0-4">
+                      <i class="addPanier icon-wishlist icon_heart_alt" href="addwishlist.php?id=<?= $row['Referenceproduit'];?>" aria-hidden="true"></i>
+                      <i class="addPanier icon-wishlist icon_heart dis-none" 
+                      href="addwishlist.php?id=<?= $row['Referenceproduit'];?>"aria-hidden="true"></i>
+                    </a>
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
+											<a   class="addPanier flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" name "addPaniers"  href="addpanier.php?id=<?= $row['Referenceproduit'];?>" >Add to Cart</a>
 										</div>
 									</div>
+								</div>
+								</div>
 
 								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+										<input type="hidden" name="Referenceproduit" value="<?PHP echo $row['Referenceproduit'];  ?>">
+									<a href="product-detail2.php?ref=<?= $row['Referenceproduit']; ?>" class="block2-name dis-block s-text3 p-b-5">
 									<?PHP echo $row['Nomproduit'] ; ?>
 									</a>
-									<span class="block2-price m-text6 p-r-5">
-									<prix>	<?PHP echo $row['prix']; ?> </prix>DT
-									</span>
- <?PHP
-foreach($listepromotion as $row){
-	?>    
 									
-                             
-									<span class="block2-newprice m-text8 p-r-5">
+   
+										<?php $listepromotion=$Produit1P->modifierPrixs($row['Referenceproduit']);?>
+                             	<?PHP
+                             	$i=$row['prix'];
+                             	$reference=$row['Referenceproduit'];
+                             	if($listepromotion->rowCount()==0){
+                             		echo '<span class="block2-price m-text6 p-r-5">
+									<prix>'.$i.'</prix>DT
+									</span>';	
+                             	}
+foreach($listepromotion as $row){
+	?>   
+	<?php
+echo '<del class="block2-price m-text6 p-r-5 block2-labelsale">
+									<prix>'.$i.'</prix>DT
+									</del>';
+									?>
+	<span class="block2-newprice m-text8 p-r-5">
+
 										<?PHP echo $row['prix']-($row['solde']/100)*$row['prix']; ?> DT
+
 									</span>
-										<?PHP
+									
+    	<?PHP
 }
-	?>    
+?>
 	</div>
-								</div>
-								</div>
+							
+								
 								</div>
 
 	
@@ -569,19 +587,19 @@ foreach($listepromotion as $row){
 
 				<ul>
 					<li class="p-b-9">
-						<a href="homme.html" class="s-text7">
+						<a href="produithomme.php" class="s-text7">
 							Homme
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="femme.html" class="s-text7">
+						<a href="produitfemme.php" class="s-text7">
 							Femme
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="materiel.html" class="s-text7">
+						<a href="materiel.php" class="s-text7">
 							Matériel
 						</a>
 					</li>
@@ -625,6 +643,8 @@ foreach($listepromotion as $row){
 			</div>
 		</div>
 	</footer>
+
+
 
 
 
@@ -730,6 +750,8 @@ foreach($listepromotion as $row){
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 
 </body>
 </html>

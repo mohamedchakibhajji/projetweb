@@ -1,7 +1,17 @@
+<?php
+require "_header.php";?>
+<?php
+if(isset($_GET['del1'])){
+	$wishlist->del1($_GET['del1']);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Contact</title>
+
+	<title>Casa Sport</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -30,6 +40,8 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+	<script type="text/javascript" src="controle.js"></script>
+
 </head>
 <body class="animsition">
 
@@ -39,26 +51,22 @@
 		<div class="container-menu-header">
 			<div class="topbar">
 				<div class="topbar-social">
-					<a href="#" class="topbar-social-item fa fa-facebook"></a>
+					<a href="https://www.facebook.com/casaasport/" class="topbar-social-item fa fa-facebook"></a>
 					<a href="#" class="topbar-social-item fa fa-instagram"></a>
-					<a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
-					<a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
-					<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
 				</div>
 
 				<span class="topbar-child1">
-					Free shipping for standard order over $100
+					Bienvenue Chez Casa Sport
 				</span>
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						casasport@gmail.com
 					</span>
 
 					<div class="topbar-language rs1-select2">
 						<select class="selection-1" name="time">
-							<option>USD</option>
-							<option>EUR</option>
+							<option>TND</option>
 						</select>
 					</div>
 				</div>
@@ -75,32 +83,22 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Home</a>
+								<a href="index.html">Vêtement</a>
 								<ul class="sub_menu">
-									<li><a href="index.html">Homepage V1</a></li>
-									<li><a href="home-02.html">Homepage V2</a></li>
-									<li><a href="home-03.html">Homepage V3</a></li>
+										<li><a href="produithomme.html">Homme</a></li>
+									<li><a href="produitfemme.html">Femme</a></li>
 								</ul>
 							</li>
-
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="product1.php">Matériel</a>
 							</li>
 
 							<li class="sale-noti">
-								<a href="product.html">Sale</a>
+								<a href="product1.php">Top Vente</a>
 							</li>
 
 							<li>
-								<a href="cart.html">Features</a>
-							</li>
-
-							<li>
-								<a href="blog.html">Blog</a>
-							</li>
-
-							<li>
-								<a href="about.html">About</a>
+								<a href="cart.html">Panier</a>
 							</li>
 
 							<li>
@@ -109,8 +107,7 @@
 						</ul>
 					</nav>
 				</div>
-
-				<!-- Header Icon -->
+			<!-- Header Icon -->
 				<div class="header-icons">
 					<a href="#" class="header-wrapicon1 dis-block">
 						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
@@ -120,76 +117,72 @@
 
 					<div class="header-wrapicon2">
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
+						<span class="header-icons-noti"><?=$panier->count();?></span>
+					
+		
+						  
 
 						<!-- Header cart noti -->
-						<div class="header-cart header-dropdown">
-							<ul class="header-cart-wrapitem">
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-01.jpg" alt="IMG">
-									</div>
+		<?php
+						$ids = array_keys($_SESSION['panier']);
+if(empty($ids)){
+	$products=array();
+}else{
+$products = $DB->query("SELECT * FROM products WHERE id IN (".implode(',',$ids).')');}?>
 
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											White Shirt With Pleat Detail Back
-										</a>
+            <div class="header-cart header-dropdown">
 
-										<span class="header-cart-item-info">
-											1 x $19.00
-										</span>
-									</div>
-								</li>
+<?php foreach ($products as $product): ?>
 
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-02.jpg" alt="IMG">
-									</div>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+              <ul class="header-cart-wrapitem">
 
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Converse All Star Hi Black Canvas
-										</a>
+                <li class="header-cart-item">
 
-										<span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-									</div>
-								</li>
+         
+                  <div class="header-cart-item-img">
+                    <img src="<?=$product->id;?>.jpg" alt="IMG">
+                  </div>
 
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-03.jpg" alt="IMG">
-									</div>
 
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Nixon Porter Leather Watch In Tan
-										</a>
+                  <div class="header-cart-item-txt">
+                    <a href="product-detail.html?id=<?= $product->id; ?>" class="header-cart-item-name">
+                     <?=$product->name;?>
+                    </a>
 
-										<span class="header-cart-item-info">
-											1 x $17.00
-										</span>
-									</div>
-								</li>
-							</ul>
+             
+                        
+                  </div>
+                </li>
 
-							<div class="header-cart-total">
-								Total: $75.00
-							</div>
 
-							<div class="header-cart-buttons">
-								<div class="header-cart-wrapbtn">
+               
+
+                
+              </ul>
+                 <?php endforeach?>
+
+             
+
+              <div class="header-cart-buttons">
+                <div class="header-cart-wrapbtn">
+                  <!-- Button -->
+                  <a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                    View Cart
+                  </a>
+                </div>
+
+                <div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										View Cart
-									</a>
-								</div>
-
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Check Out
+									<a href="wishlist.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										Wishlist
 									</a>
 								</div>
 							</div>
@@ -230,7 +223,7 @@
 
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
-											White Shirt With Pleat Detail Back
+										momo
 										</a>
 
 										<span class="header-cart-item-info">
@@ -273,7 +266,7 @@
 							</ul>
 
 							<div class="header-cart-total">
-								Total: $75.00
+								Total: $13424
 							</div>
 
 							<div class="header-cart-buttons">
@@ -349,11 +342,11 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Shop</a>
+						<a href="product1.php">Shop</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Sale</a>
+						<a href="product1.php">Sale</a>
 					</li>
 
 					<li class="item-menu-mobile">
@@ -377,52 +370,430 @@
 	</header>
 
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-06.jpg);">
+	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-01.jpg);">
 		<h2 class="l-text2 t-center">
-			Contact
+			WISHLIST
 		</h2>
 	</section>
 
-	<!-- content page -->
-	<section class="bgwhite p-t-66 p-b-60">
+	<!-- Cart -->
+	
+	<section class="cart bgwhite p-t-70 p-b-100">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-6 p-b-30">
-					<div class="p-r-20 p-r-0-lg">
-						<div class="contact-map size21" id="google_map" data-map-x="40.614439" data-map-y="-73.926781" data-pin="images/icons/icon-position-map.png" data-scrollwhell="0" data-draggable="1"></div>
+			<!-- Cart item -->
+			<div class="container-table-cart pos-relative">
+				<div class="wrap-table-shopping-cart bgwhite">
+					<table class="table-shopping-cart">
+						<tr class="table-head">
+							<th class="column-1"></th>
+							<th class="column-2"><br>Product</br></th>
+							<th class="column-3">
+							
+							
+
+						
+							
+						</tr>
+
+						<tr class="table-row">
+							<?php 
+
+
+
+$ids = array_keys($_SESSION['wishlist']);
+if(empty($ids)){
+	$products=array();
+}else{
+$products = $DB->query("SELECT * FROM products WHERE id IN (".implode(',',$ids).')');}
+								foreach ($products as $product):?>
+							<td class="column-1">
+								<div class="cart-img-product b-rad-4 o-f-hidden">
+									<img src="<?=$product->id;?>.jpg" alt="IMG-PRODUCT">
+								</div>
+							</td>
+								&nbsp; 
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+							&nbsp; 
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						<div>
+							<td class="column-2"><?=$product->name;?></td>
+
+							
+							</div>
+								&nbsp; 
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+							&nbsp; 
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+							&nbsp; 
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						
+			
+							<div>
+								<td class="column-3"><a href="wishlist.php?del1=<?= $product->id; ?>"class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4";>supprimer</a></td>
+							
+							</div>
+
+						&nbsp; 
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
+
+
+							
+							
+							
+								
+								
+
+								
+								</div>
+
+
+							</td>
+
+
+						
+
+							
+
+						</tr>
+					
+
+
+						
+					</table>
+				</div>
+			</div>
+			
+
+			<div class="flex-w flex-sb-m p-t-25 p-b-25 bo8 p-l-35 p-r-60 p-lr-15-sm">
+				<div class="flex-w flex-m w-full-sm">
+					
+					
+
+
+						
+						&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							
+						
+							
+
+								<?php endforeach;?>
+					
 					</div>
 				</div>
 
-				<div class="col-md-6 p-b-30">
-					<form class="leave-comment">
-						<h4 class="m-text26 p-b-36 p-t-15">
-							Send us your message
-						</h4>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Full Name">
+			<!-- Total -->
+			<div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
+				<h5 class="m-text20 p-b-24">
+					Cart Totals
+				</h5>
+
+				<!--  -->
+				<div class="flex-w flex-sb-m p-b-12">
+					<span class="s-text18 w-size19 w-full-sm">
+						Subtotal:
+					</span>
+
+					<span class="m-text21 w-size20 w-full-sm">
+						$39.00
+					</span>
+				</div>
+
+				<!--  -->
+				<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+					<span class="s-text18 w-size19 w-full-sm">
+						Shipping:
+					</span>
+
+					<div class="w-size20 w-full-sm">
+						<p class="s-text8 p-b-23">
+							There are no shipping methods available. Please double check your address, or contact us if you need any help.
+						</p>
+
+						<span class="s-text19">
+							Calculate Shipping
+						</span>
+
+						<div class="rs2-select2 rs3-select2 rs4-select2 bo4 of-hidden w-size21 m-t-8 m-b-12">
+							<select class="selection-2" name="country">
+								<option>Select a country...</option>
+								<option>US</option>
+								<option>UK</option>
+								<option>Japan</option>
+							</select>
 						</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone-number" placeholder="Phone Number">
+						<div class="size13 bo4 m-b-12">
+						<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="state" placeholder="State /  country">
 						</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email" placeholder="Email Address">
+						<div class="size13 bo4 m-b-22">
+							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="postcode" placeholder="Postcode / Zip">
 						</div>
 
-						<textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="message" placeholder="Message"></textarea>
-
-						<div class="w-size25">
+						<div class="size14 trans-0-4 m-b-10">
 							<!-- Button -->
-							<button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
-								Send
+							<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+								Update Totals
 							</button>
 						</div>
-					</form>
+					</div>
+				</div>
+
+				<!--  -->
+				<div class="flex-w flex-sb-m p-t-26 p-b-30">
+					<span class="m-text22 w-size19 w-full-sm">
+						Total:
+					</span>
+
+					<span class="m-text21 w-size20 w-full-sm">
+						$39.00
+					</span>
+				</div>
+
+				<div class="size15 trans-0-4">
+					<!-- Button -->
+					<button onclick="window.location.href='livraison.html'" type="button" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+						Proceed to Checkout
+					</button>
 				</div>
 			</div>
 		</div>
+
 	</section>
 
 
@@ -431,51 +802,47 @@
 		<div class="flex-w p-b-90">
 			<div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
-					GET IN TOUCH
+					Adresse
 				</h4>
 
 				<div>
 					<p class="s-text7 w-size27">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						Place Aristote à côté pharmacie kriaa cité ghazela (2.93 mi) Ariana, Tunisia
 					</p>
 
+					<p class="s-text7 w-size27">
+						+216 27 466 499
+					</p>
+
+
 					<div class="flex-m p-t-30">
-						<a href="#" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
+						<a href="https://www.facebook.com/casaasport/" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
 						<a href="#" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
-						<a href="#" class="fs-18 color1 p-r-20 fa fa-pinterest-p"></a>
-						<a href="#" class="fs-18 color1 p-r-20 fa fa-snapchat-ghost"></a>
-						<a href="#" class="fs-18 color1 p-r-20 fa fa-youtube-play"></a>
 					</div>
 				</div>
 			</div>
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Categories
+					Catégories
 				</h4>
 
 				<ul>
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Men
+						<a href="homme.html" class="s-text7">
+							Homme
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Women
+						<a href="femme.html" class="s-text7">
+							Femme
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Dresses
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Sunglasses
+						<a href="materiel.html" class="s-text7">
+							Matériel
 						</a>
 					</li>
 				</ul>
@@ -487,109 +854,34 @@
 				</h4>
 
 				<ul>
+
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Search
+							Nos marques
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							About Us
+						<a href="https://www.facebook.com/casaasport/" class="s-text7">
+							Contacter nous
 						</a>
 					</li>
 
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Contact Us
-						</a>
-					</li>
 
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Returns
-						</a>
-					</li>
 				</ul>
+
 			</div>
-
-			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-				<h4 class="s-text12 p-b-30">
-					Help
-				</h4>
-
-				<ul>
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Track Order
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Returns
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Shipping
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							FAQs
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="w-size8 p-t-30 p-l-15 p-r-15 respon3">
-				<h4 class="s-text12 p-b-30">
-					Newsletter
-				</h4>
-
-				<form>
-					<div class="effect1 w-size9">
-						<input class="s-text7 bg6 w-full p-b-5" type="text" name="email" placeholder="email@example.com">
-						<span class="effect1-line"></span>
-					</div>
-
-					<div class="w-size2 p-t-20">
-						<!-- Button -->
-						<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
-							Subscribe
-						</button>
-					</div>
-
-				</form>
-			</div>
+			<picture>
+					<source media="(min-width: 100px)" srcset="images/icons/logo_casa_sport.png">
+  <img src="images/icons/logo_casa_sport.png" alt="Flowers" style="width:390px;">
+			</picture>
 		</div>
 
-		<div class="t-center p-l-15 p-r-15">
-			<a href="#">
-				<img class="h-size2" src="images/icons/paypal.png" alt="IMG-PAYPAL">
-			</a>
+	
 
-			<a href="#">
-				<img class="h-size2" src="images/icons/visa.png" alt="IMG-VISA">
-			</a>
-
-			<a href="#">
-				<img class="h-size2" src="images/icons/mastercard.png" alt="IMG-MASTERCARD">
-			</a>
-
-			<a href="#">
-				<img class="h-size2" src="images/icons/express.png" alt="IMG-EXPRESS">
-			</a>
-
-			<a href="#">
-				<img class="h-size2" src="images/icons/discover.png" alt="IMG-DISCOVER">
-			</a>
 
 			<div class="t-center s-text8 p-t-20">
-				Copyright © 2018 All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+				Copyright © 2019 All rights reserved. | L'équipe Casa Sport <i class="fa fa-heart-o" aria-hidden="true"></i> 
 			</div>
 		</div>
 	</footer>
@@ -629,9 +921,6 @@
 			dropdownParent: $('#dropDownSelect2')
 		});
 	</script>
-<!--===============================================================================================-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
-	<script src="js/map-custom.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 

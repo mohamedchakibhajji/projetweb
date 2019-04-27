@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Blog Detail</title>
+	<title>Casa Sport</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -27,6 +27,8 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
 <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
@@ -38,27 +40,23 @@
 		<!-- Header desktop -->
 		<div class="container-menu-header">
 			<div class="topbar">
-				<div class="topbar-social">
-					<a href="#" class="topbar-social-item fa fa-facebook"></a>
+			<div class="topbar-social">
+					<a href="https://www.facebook.com/casaasport/" class="topbar-social-item fa fa-facebook"></a>
 					<a href="#" class="topbar-social-item fa fa-instagram"></a>
-					<a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
-					<a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
-					<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
 				</div>
 
 				<span class="topbar-child1">
-					Free shipping for standard order over $100
+					Bienvenue Chez Casa Sport
 				</span>
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						casasport@gmail.com
 					</span>
 
 					<div class="topbar-language rs1-select2">
 						<select class="selection-1" name="time">
-							<option>USD</option>
-							<option>EUR</option>
+							<option>TND</option>
 						</select>
 					</div>
 				</div>
@@ -74,33 +72,19 @@
 				<div class="wrap_menu">
 					<nav class="menu">
 						<ul class="main_menu">
-							<li>
-								<a href="index.html">Home</a>
+							<li class="sale-noti">
+								<a href="index.html">Vêtement</a>
 								<ul class="sub_menu">
-									<li><a href="index.html">Homepage V1</a></li>
-									<li><a href="home-02.html">Homepage V2</a></li>
-									<li><a href="home-03.html">Homepage V3</a></li>
+									<li class="sale-noti"><a href="produithomme.php">Homme</a></li>
+									<li><a href="produitfemme.html">Femme</a></li>
 								</ul>
 							</li>
-
 							<li>
-								<a href="product.html">Shop</a>
-							</li>
-
-							<li class="sale-noti">
-								<a href="product.html">Sale</a>
+								<a href="materiel.php">Matériel</a>
 							</li>
 
 							<li>
-								<a href="cart.html">Features</a>
-							</li>
-
-							<li>
-								<a href="blog.html">Blog</a>
-							</li>
-
-							<li>
-								<a href="about.html">About</a>
+								<a href="cart.html">Panier</a>
 							</li>
 
 							<li>
@@ -376,368 +360,181 @@
 		</div>
 	</header>
 
-	<!-- breadcrumb -->
-	<div class="bread-crumb bgwhite flex-w p-l-52 p-r-15 p-t-30 p-l-15-sm">
-		<a href="index.html" class="s-text16">
-			Home
-			<i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
-		</a>
+	<!-- Title Page -->
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/sportpub.jpg);">
+		<h2 class="l-text2 t-center">
+			Homme
+		</h2>
+		<p class="m-text13 t-center">
+			Collection 2019
+		</p>
+	</section>
 
-		<a href="blog.html" class="s-text16">
-			Blog
-			<i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
-		</a>
 
-		<span class="s-text17">
-			Black Friday Guide: Best Sales & Discount Codes
-		</span>
-	</div>
-
-	<!-- content page -->
-	<section class="bgwhite p-t-60 p-b-25">
+	<!-- Content page -->
+	<section class="bgwhite p-t-55 p-b-65">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8 col-lg-9 p-b-80">
-					<div class="p-r-50 p-r-0-lg">
-						<div class="p-b-40">
-							<div class="blog-detail-img wrap-pic-w">
-								<img src="images/blog-04.jpg" alt="IMG-BLOG">
-							</div>
-
-							<div class="blog-detail-txt p-t-33">
-								<h4 class="p-b-11 m-text24">
-									Black Friday Guide: Best Sales & Discount Codes
-								</h4>
-
-								<div class="s-text8 flex-w flex-m p-b-21">
-									<span>
-										By Admin
-										<span class="m-l-3 m-r-6">|</span>
-									</span>
-
-									<span>
-										28 Dec, 2018
-										<span class="m-l-3 m-r-6">|</span>
-									</span>
-
-									<span>
-										Cooking, Food
-										<span class="m-l-3 m-r-6">|</span>
-									</span>
-
-									<span>
-										8 Comments
-									</span>
-								</div>
-
-								<p class="p-b-25">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed turpis sed lorem dignissim vulputate nec cursus ante. Nunc sit amet tempor magna. Donec eros sem, porta eget leo et, varius eleifend mauris. Donec eu leo congue, faucibus quam eu, viverra mauris. Nulla consectetur lorem mi, at scelerisque metus hendrerit vitae. Proin vel magna vel neque porta ultricies non eget mauris. Suspendisse potenti.
-								</p>
-
-								<p class="p-b-25">
-									Aliquam faucibus scelerisque placerat. Vestibulum vel libero eu nulla varius pretium eget eu magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean dictum faucibus felis, ac vestibulum risus mollis in. Phasellus neque dolor, euismod vitae auctor eget, dignissim a felis. Etiam malesuada elit a nibh aliquam, placerat ultricies nibh dictum. Nam ut egestas velit. Pellentesque viverra tincidunt tellus. Etiam cursus, ligula id vehicula cursus, turpis mauris facilisis massa, eget tincidunt est purus et odio. Nam quis luctus libero, non posuere velit. Ut eu varius diam, eu euismod elit. Donec efficitur, neque eu consectetur consectetur, dui sem consectetur felis, vitae rutrum risus urna vel arcu. Aliquam semper ullamcorper laoreet. Sed arcu lectus, fermentum imperdiet purus eu, ornare ornare libero.
-								</p>
-							</div>
-
-							<div class="flex-m flex-w p-t-20">
-								<span class="s-text20 p-r-20">
-									Tags
-								</span>
-
-								<div class="wrap-tags flex-w">
-									<a href="#" class="tag-item">
-										Streetstyle
-									</a>
-
-									<a href="#" class="tag-item">
-										Crafts
-									</a>
-								</div>
-							</div>
-						</div>
-
-						<!-- Leave a comment -->
-						<form class="leave-comment">
-							<h4 class="m-text25 p-b-14">
-								Leave a Comment
-							</h4>
-
-							<p class="s-text8 p-b-40">
-								Your email address will not be published. Required fields are marked *
-							</p>
-
-							<textarea class="dis-block s-text7 size18 bo12 p-l-18 p-r-18 p-t-13 m-b-20" name="comment" placeholder="Comment..."></textarea>
-
-							<div class="bo12 of-hidden size19 m-b-20">
-								<input class="sizefull s-text7 p-l-18 p-r-18" type="text" name="name" placeholder="Name *">
-							</div>
-
-							<div class="bo12 of-hidden size19 m-b-20">
-								<input class="sizefull s-text7 p-l-18 p-r-18" type="text" name="email" placeholder="Email *">
-							</div>
-
-							<div class="bo12 of-hidden size19 m-b-30">
-								<input class="sizefull s-text7 p-l-18 p-r-18" type="text" name="website" placeholder="Website">
-							</div>
-
-							<div class="w-size24">
-								<!-- Button -->
-								<button class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-									Post Comment
-								</button>
-							</div>
-						</form>
-					</div>
-				</div>
-
-				<div class="col-md-4 col-lg-3 p-b-80">
-					<div class="rightbar">
-						<!-- Search -->
-						<div class="pos-relative bo11 of-hidden">
-							<input class="s-text7 size16 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search">
-
-							<button class="flex-c-m size5 ab-r-m color1 color0-hov trans-0-4">
-								<i class="fs-13 fa fa-search" aria-hidden="true"></i>
-							</button>
-						</div>
-
-						<!-- Categories -->
-						<h4 class="m-text23 p-t-56 p-b-34">
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+					<div class="leftbar p-r-20 p-r-0-sm">
+						<!--  -->
+						<h4 class="m-text14 p-b-7">
 							Categories
 						</h4>
 
-						<ul>
-							<li class="p-t-6 p-b-8 bo6">
-								<a href="#" class="s-text13 p-t-5 p-b-5">
-									Fashion
+						<ul class="p-b-54">
+							
+							<li class="p-t-4">
+								<a href="produithomme.php" class="s-text13">
+									Homme
 								</a>
 							</li>
 
-							<li class="p-t-6 p-b-8 bo7">
-								<a href="#" class="s-text13 p-t-5 p-b-5">
-									Beauty
+							<li class="p-t-4">
+								<a href="produitfemme.html" class="s-text13">
+									Femme
 								</a>
 							</li>
 
-							<li class="p-t-6 p-b-8 bo7">
-								<a href="#" class="s-text13 p-t-5 p-b-5">
-									Street Style
+							<li class="p-t-4">
+								<a href="materiel.php" class="s-text13">
+									Matériel
 								</a>
 							</li>
 
-							<li class="p-t-6 p-b-8 bo7">
-								<a href="#" class="s-text13 p-t-5 p-b-5">
-									Life Style
-								</a>
-							</li>
-
-							<li class="p-t-6 p-b-8 bo7">
-								<a href="#" class="s-text13 p-t-5 p-b-5">
-									DIY & Crafts
+							<li class="p-t-4">
+								<a href="accessoires.php" class="s-text13">
+									Accesoires
 								</a>
 							</li>
 						</ul>
 
-						<!-- Featured Products -->
-						<h4 class="m-text23 p-t-65 p-b-34">
-							Featured Products
+						<!--  -->
+						<h4 class="m-text14 p-b-32">
+							Filters
 						</h4>
 
-						<ul class="bgwhite">
-							<li class="flex-w p-b-20">
-								<a href="product-detail.html" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">
-									<img src="images/item-16.jpg" alt="IMG-PRODUCT">
-								</a>
+						<div class="filter-price p-t-22 p-b-50 bo3">
+							<div class="m-text15 p-b-17">
+								Price
+							</div>
 
-								<div class="w-size23 p-t-5">
-									<a href="product-detail.html" class="s-text20">
-										White Shirt With Pleat Detail Back
-									</a>
+							<div class="wra-filter-bar">
+								<div id="filter-bar"></div>
+							</div>
 
-									<span class="dis-block s-text17 p-t-6">
-										$19.00
-									</span>
+							<div class="flex-sb-m flex-w p-t-16">
+							
+
+								<div class="s-text3 p-t-10 p-b-10">
+									Range: <span id="value-lower">610</span> DT - <span id="value-upper">980</span> DT
 								</div>
-							</li>
-
-							<li class="flex-w p-b-20">
-								<a href="product-detail.html" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">
-									<img src="images/item-17.jpg" alt="IMG-PRODUCT">
-								</a>
-
-								<div class="w-size23 p-t-5">
-									<a href="product-detail.html" class="s-text20">
-										Converse All Star Hi Black Canvas
-									</a>
-
-									<span class="dis-block s-text17 p-t-6">
-										$39.00
-									</span>
-								</div>
-							</li>
-
-							<li class="flex-w p-b-20">
-								<a href="product-detail.html" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">
-									<img src="images/item-08.jpg" alt="IMG-PRODUCT">
-								</a>
-
-								<div class="w-size23 p-t-5">
-									<a href="product-detail.html" class="s-text20">
-										Nixon Porter Leather Watch In Tan
-									</a>
-
-									<span class="dis-block s-text17 p-t-6">
-										$17.00
-									</span>
-								</div>
-							</li>
-
-							<li class="flex-w p-b-20">
-								<a href="product-detail.html" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">
-									<img src="images/item-03.jpg" alt="IMG-PRODUCT">
-								</a>
-
-								<div class="w-size23 p-t-5">
-									<a href="product-detail.html" class="s-text20">
-										Denim jacket blue
-									</a>
-
-									<span class="dis-block s-text17 p-t-6">
-										$39.00
-									</span>
-								</div>
-							</li>
-
-							<li class="flex-w p-b-20">
-								<a href="product-detail.html" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">
-									<img src="images/item-05.jpg" alt="IMG-PRODUCT">
-								</a>
-
-								<div class="w-size23 p-t-5">
-									<a href="product-detail.html" class="s-text20">
-										Nixon Porter Leather Watch In Tan
-									</a>
-
-									<span class="dis-block s-text17 p-t-6">
-										$17.00
-									</span>
-								</div>
-							</li>
-						</ul>
-
-						<!-- Archive -->
-						<h4 class="m-text23 p-t-50 p-b-16">
-							Archive
-						</h4>
-
-						<ul>
-							<li class="flex-sb-m">
-								<a href="#" class="s-text13 p-t-5 p-b-5">
-									July 2018
-								</a>
-
-								<span class="s-text13">
-									(9)
-								</span>
-							</li>
-
-							<li class="flex-sb-m">
-								<a href="#" class="s-text13 p-t-5 p-b-5">
-									June 2018
-								</a>
-
-								<span class="s-text13">
-									(39)
-								</span>
-							</li>
-
-							<li class="flex-sb-m">
-								<a href="#" class="s-text13 p-t-5 p-b-5">
-									May 2018
-								</a>
-
-								<span class="s-text13">
-									(29)
-								</span>
-							</li>
-
-							<li class="flex-sb-m">
-								<a href="#" class="s-text13 p-t-5 p-b-5">
-									April  2018
-								</a>
-
-								<span class="s-text13">
-									(35)
-								</span>
-							</li>
-
-							<li class="flex-sb-m">
-								<a href="#" class="s-text13 p-t-5 p-b-5">
-									March 2018
-								</a>
-
-								<span class="s-text13">
-									(22)
-								</span>
-							</li>
-
-							<li class="flex-sb-m">
-								<a href="#" class="s-text13 p-t-5 p-b-5">
-									February 2018
-								</a>
-
-								<span class="s-text13">
-									(32)
-								</span>
-							</li>
-
-							<li class="flex-sb-m">
-								<a href="#" class="s-text13 p-t-5 p-b-5">
-									January 2018
-								</a>
-
-								<span class="s-text13">
-									(21)
-								</span>
-							</li>
-
-							<li class="flex-sb-m">
-								<a href="#" class="s-text13 p-t-5 p-b-5">
-									December 2017
-								</a>
-
-								<span class="s-text13">
-									(26)
-								</span>
-							</li>
-						</ul>
-
-						<!-- Tags -->
-						<h4 class="m-text23 p-t-50 p-b-25">
-							Tags
-						</h4>
-
-						<div class="wrap-tags flex-w">
-							<a href="#" class="tag-item">
-								Fashion
-							</a>
-
-							<a href="#" class="tag-item">
-								Lifestyle
-							</a>
-
-							<a href="#" class="tag-item">
-								Denim
-							</a>
-
-							<a href="#" class="tag-item">
-								Streetstyle
-							</a>
-
-							<a href="#" class="tag-item">
-								Crafts
-							</a>
+							</div>
 						</div>
+
+						<div class="search-product pos-relative bo4 of-hidden">
+							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
+
+							<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
+								<i class="fs-12 fa fa-search" aria-hidden="true"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
+					<!--  -->
+					 <form method="GET" action="rechercherProduit.php">
+					<div class="flex-sb-m flex-w p-b-35">
+						<div class="flex-w">
+							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
+								<select class="selection-2" name="sorting" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+									<option value="accessoires.php">Default Sorting</option>
+									<option value="/Frontend/newaccessoires.php">New</option>
+									<option value="/Frontend/triaccessoires.php" >Price: low to high</option>
+									<option  value="/Frontend/tridecroitaccessoires.php">Price: high to low</option>
+								</select>
+							</div>
+						</div>
+                         </form>
+						<span class="s-text8 p-t-5 p-b-5">
+							Showing 1–12 of 16 results
+						</span>
+					</div>
+  
+					<!-- Product -->
+					
+  <?PHP
+include "../Backend/core/produitP.php";
+$Produit1P=new ProduitP();
+$listeProduit=$Produit1P->tricoiaccessoires();
+$listepromotion=$Produit1P->modifierPrix();
+?>                  
+							<div class="row">
+
+							<!-- Block2 -->
+
+
+	                       
+	                       	<?PHP
+foreach($listeProduit as $row){
+	?>    
+						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+		<div class="block2">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative"  >
+                                      <?= "<img src='../Backend/image/".$row["photodeproduit"]."' height='350 px'   >";    ?>    
+									   <div class="block2-overlay trans-0-4">
+                    <a href="addwishlist.php?id=<?= $row['Referenceproduit'];?>"class="addPanier block2-btn-addwishlist hov-pointer trans-0-4">
+                      <i class="addPanier icon-wishlist icon_heart_alt" href="addwishlist.php?id=<?= $row['Referenceproduit'];?>" aria-hidden="true"></i>
+                      <i class="addPanier icon-wishlist icon_heart dis-none" 
+                      href="addwishlist.php?id=<?= $row['Referenceproduit'];?>"aria-hidden="true"></i>
+                    </a>
+
+										<div class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<a   class="addPanier flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" name "addPaniers"  href="addpanier.php?id=<?= $row['Referenceproduit'];?>" >Add to Cart</a>
+										</div>
+									</div>
+								</div>
+								</div>
+
+								<div class="block2-txt p-t-20">
+									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+									<?PHP echo $row['Nomproduit'] ; ?>
+									</a>
+									<span class="block2-price m-text6 p-r-5">
+									<prix>	<?PHP echo $row['prix']; ?> </prix>DT
+									</span>
+   
+										<?php $listepromotion=$Produit1P->modifierPrix();?>
+                             	<?PHP
+foreach($listepromotion as $row){
+	?>   
+									<span class="block2-newprice m-text8 p-r-5">
+										
+    
+										<?PHP echo $row['prix']-($row['solde']/100)*$row['prix']; ?> DT
+
+									</span>
+    	<?PHP
+}
+?>
+	</div>
+							
+								
+								</div>
+
+	
+							<?PHP
+}
+?>
+                         
+						   </div>
+
+					<!-- Pagination -->
+					<div class="pagination flex-m flex-w p-t-26">
+						<a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
+						<a href="#" class="item-pagination flex-c-m trans-0-4">2</a>
 					</div>
 				</div>
 			</div>
@@ -750,51 +547,47 @@
 		<div class="flex-w p-b-90">
 			<div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
-					GET IN TOUCH
+					Adresse
 				</h4>
 
 				<div>
 					<p class="s-text7 w-size27">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						Place Aristote à côté pharmacie kriaa cité ghazela (2.93 mi) Ariana, Tunisia
 					</p>
 
+					<p class="s-text7 w-size27">
+						+216 27 466 499
+					</p>
+
+
 					<div class="flex-m p-t-30">
-						<a href="#" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
+						<a href="https://www.facebook.com/casaasport/" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
 						<a href="#" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
-						<a href="#" class="fs-18 color1 p-r-20 fa fa-pinterest-p"></a>
-						<a href="#" class="fs-18 color1 p-r-20 fa fa-snapchat-ghost"></a>
-						<a href="#" class="fs-18 color1 p-r-20 fa fa-youtube-play"></a>
 					</div>
 				</div>
 			</div>
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Categories
+					Catégories
 				</h4>
 
 				<ul>
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Men
+						<a href="homme.html" class="s-text7">
+							Homme
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Women
+						<a href="femme.html" class="s-text7">
+							Femme
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Dresses
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Sunglasses
+						<a href="materiel.html" class="s-text7">
+							Matériel
 						</a>
 					</li>
 				</ul>
@@ -806,109 +599,34 @@
 				</h4>
 
 				<ul>
+
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Search
+							Nos marques
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							About Us
+						<a href="https://www.facebook.com/casaasport/" class="s-text7">
+							Contacter nous
 						</a>
 					</li>
 
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Contact Us
-						</a>
-					</li>
 
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Returns
-						</a>
-					</li>
 				</ul>
+
 			</div>
-
-			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-				<h4 class="s-text12 p-b-30">
-					Help
-				</h4>
-
-				<ul>
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Track Order
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Returns
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Shipping
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							FAQs
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="w-size8 p-t-30 p-l-15 p-r-15 respon3">
-				<h4 class="s-text12 p-b-30">
-					Newsletter
-				</h4>
-
-				<form>
-					<div class="effect1 w-size9">
-						<input class="s-text7 bg6 w-full p-b-5" type="text" name="email" placeholder="email@example.com">
-						<span class="effect1-line"></span>
-					</div>
-
-					<div class="w-size2 p-t-20">
-						<!-- Button -->
-						<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
-							Subscribe
-						</button>
-					</div>
-
-				</form>
-			</div>
+			<picture>
+					<source media="(min-width: 100px)" srcset="images/icons/logo_casa_sport.png">
+  <img src="images/icons/logo_casa_sport.png" alt="Flowers" style="width:390px;">
+			</picture>
 		</div>
 
-		<div class="t-center p-l-15 p-r-15">
-			<a href="#">
-				<img class="h-size2" src="images/icons/paypal.png" alt="IMG-PAYPAL">
-			</a>
+	
 
-			<a href="#">
-				<img class="h-size2" src="images/icons/visa.png" alt="IMG-VISA">
-			</a>
-
-			<a href="#">
-				<img class="h-size2" src="images/icons/mastercard.png" alt="IMG-MASTERCARD">
-			</a>
-
-			<a href="#">
-				<img class="h-size2" src="images/icons/express.png" alt="IMG-EXPRESS">
-			</a>
-
-			<a href="#">
-				<img class="h-size2" src="images/icons/discover.png" alt="IMG-DISCOVER">
-			</a>
 
 			<div class="t-center s-text8 p-t-20">
-				Copyright © 2018 All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+				Copyright © 2019 All rights reserved. | L'équipe Casa Sport <i class="fa fa-heart-o" aria-hidden="true"></i> 
 			</div>
 		</div>
 	</footer>
@@ -938,6 +656,25 @@
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
 	<script type="text/javascript">
+
+		$(function(){
+
+			setInterval(function(){
+				var min=parseFloat($('#value-lower').text());
+				var max=parseFloat($('#value-upper').text());
+				$(".block2").each(function(){
+					var prix=parseFloat($(this).find("prix").text());
+					if(prix>=min && prix<=max){
+						$(this).parent().show();
+					}
+					else{
+						$(this).parent().hide();
+					}
+					
+				})				
+			},100)
+		})
+
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect1')
@@ -947,6 +684,55 @@
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
 		});
+	</script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>
+	<script type="text/javascript" src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/slick/slick.min.js"></script>
+	<script type="text/javascript" src="js/slick-custom.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
+	<script type="text/javascript">
+		$('.block2-btn-addcart').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+
+		$('.block2-btn-addwishlist').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+			});
+		});
+	</script>
+
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/noui/nouislider.min.js"></script>
+	<script type="text/javascript">
+		/*[ No ui ]
+	    ===========================================================*/
+	    var filterBar = document.getElementById('filter-bar');
+
+	    noUiSlider.create(filterBar, {
+	        start: [ 0, 500 ],
+	        connect: true,
+	        range: {
+	            'min': 0,
+	            'max': 500
+	        }
+	    });
+
+	    var skipValues = [
+	    document.getElementById('value-lower'),
+	    document.getElementById('value-upper')
+	    ];
+
+	    filterBar.noUiSlider.on('update', function( values, handle ) {
+	        skipValues[handle].innerHTML = Math.round(values[handle]) ;
+	    });
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
