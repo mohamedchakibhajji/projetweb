@@ -13,14 +13,14 @@
   <body id="login">
     <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" id="form1" name="form1" method="POST" action="connexion.php" >
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input id="mail" type="text" class="input-block-level" placeholder="Email address" name="mail">
+        <input id="login" type="text" class="input-block-level" placeholder="login" name="login">
         <input id="pwd" type="password" class="input-block-level" placeholder="Password" name="pwd">
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me
         </label>
-            <button onclick="test();" class="btn btn-large btn-primary" type="button">Sign in</button>
+            <button class="btn btn-large btn-primary" type="submit">Sign in</button>
       </form>
 
     </div> <!-- /container -->

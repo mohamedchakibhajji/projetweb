@@ -52,10 +52,12 @@ if(qte < 0) {
 
  var quantite =  parseInt(document.getElementById('s2').value)
 if(quantite < 0) {
-  alert('Quantité Negatif')
+  alert('Quantité Negative')
   return false;
+
 }
 
 }
+
 
 

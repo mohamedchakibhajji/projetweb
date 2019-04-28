@@ -1,5 +1,13 @@
 <?PHP 
 include "core/produitP.php"; ?>
+<?php
+
+session_start();
+if (empty($_SESSION['l'])) {
+    header("location:login.html");
+}
+else {
+?>
 <!DOCTYPE html>
 <html class="no-js">
     
@@ -30,7 +38,7 @@ include "core/produitP.php"; ?>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li class="dropdown">
-                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <f class="icon-user"></i> Chekib Elhajji<i class="caret"></i>
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <f class="icon-user"></i> <?PHP echo $_SESSION['l'] ;?> <i class="caret"></i>
 
                                 </a>
                                 <ul class="dropdown-menu">
@@ -39,7 +47,7 @@ include "core/produitP.php"; ?>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a tabindex="-1" href="login.html">Logout</a>
+                                        <a tabindex="-1" href="logout.php">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -354,6 +362,7 @@ include "core/produitP.php"; ?>
                         <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
+                                <script type="text/javascript" src="Controlemodifier.js"></script>
                                 <div class="muted pull-left">
                                      Modifier Produit</div>
                                
@@ -402,7 +411,7 @@ foreach($listeProduit as $row){
                                           <div class="control-group">
                                           <label class="control-label" for="typeahead">Nom Du Produit</label>
                                           <div class="controls">
-                                            <input type="text" class="span6" id="typeahead" name="Nomproduit" data-provide="typeahead" '>
+                                            <input type="text" class="span6"  name="Nomproduit" data-provide="typeahead" '>
                                           </div>
 
                                         </div>
@@ -449,7 +458,7 @@ foreach($listeProduit as $row){
                                           <label class="control-label">Quantité</label>
                                           <div class="controls">
                                             <p class="help-block"></p>
-                                             <td><input type="number" name="quantite" id="s2" ></td>
+                                             <td><input type="number" name="quantite" id="quantite" ></td>
                                           </div>
                                         </div>
                                         <div class="control-group">
@@ -470,12 +479,13 @@ foreach($listeProduit as $row){
                                         </div>
 
                                         <div class="form-actions">
-                                          <button type="submit"  class="btn btn-primary" name="modifier" value="modifier">Modifier</button>
+                                          <button type="submit"  class="btn btn-primary" name="modifier" onclick="return verifquantite();" value="modifier">Modifier</button>
                                           <button type="reset" class="btn" >Annuler</button>
                                         </div>
                                       </fieldset>
                                     </form>
-
+                                     </form>
+                                         
                                 </div>
                             </div>
                         </div>
@@ -599,5 +609,5 @@ foreach($listeProduit as $row){
         });
         </script>
     </body>
-
+<?php } ?>
 </html>
