@@ -12,7 +12,7 @@ function verifier($tableau){
 }
 if(verifier(['Nomproduit','Referenceproduit' ,'Categorie' ,'Marque','prix','Datedepublication' ,'Boutique','description'])){
 
-$produit1=new Produit($_POST['Nomproduit'],$_POST['Referenceproduit'],$_POST['Categorie'],$_POST['Marque'],$_POST['prix'],$_POST['Datedepublication'],$_POST['New'],$_POST['Boutique'], $_FILES['file1']['name'],$_POST['description']);
+$produit1=new Produit($_POST['Nomproduit'],$_POST['Referenceproduit'],$_POST['Categorie'],$_POST['Marque'],$_POST['prix'],$_POST['Datedepublication'],$_POST['quantite'],$_POST['Boutique'], $_FILES['file1']['name'],$_POST['description']);
 
 $produit1P=new produitP();
 if($produit1P->ajouterProduit($produit1)){
@@ -20,7 +20,6 @@ if($produit1P->ajouterProduit($produit1)){
  $location='../image/';
   $tmp_name = $_FILES['file1']['tmp_name'];
 if( move_uploaded_file($tmp_name ,$location.$name)){
-	echo "ok";
 	header('Location: ../produit1.php?operation=ok');	
 }
 else{

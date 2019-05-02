@@ -15,6 +15,8 @@ if (isset($_POST['modifier']) and !empty($_POST["Referenceproduit"])){
 			header('Location: ../produit1.php?operation=update');
 	}
 	}
+
+	
 	if(isset($_POST["Marque"])){	
 		if(!empty($_POST["Marque"])){
 		produitP::modifierProduit($_POST["Referenceproduit"],"Marque",$Marque);
@@ -30,6 +32,13 @@ if(isset($_POST["Datedepublication"])){
 if(isset($_POST["Boutique"])){
 		if(!empty($_POST["Boutique"])){
 		produitP::modifierProduit($_POST["Referenceproduit"],"Boutique",$Boutique);
+			header('Location: ../produit1.php?operation=update');
+	}
+}
+
+if(isset($_POST["quantite"])){	
+		if(!empty($_POST["quantite"])){
+		produitP::modifierProduit($_POST["Referenceproduit"],"quantite",$quantite);
 			header('Location: ../produit1.php?operation=update');
 	}
 }

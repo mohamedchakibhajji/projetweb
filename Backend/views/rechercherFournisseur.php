@@ -1,10 +1,10 @@
-<?php
-
+<?PHP 
 session_start();
 if (empty($_SESSION['l'])) {
-    header("location:../login.html");
+    header("location:login.html");
 }
 else {
+
 ?>
 <!DOCTYPE html>
 <html class="no-js">
@@ -36,7 +36,7 @@ else {
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li class="dropdown">
-                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i><?PHP echo $_SESSION['l'] ;?><i class="caret"></i>
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> <?PHP echo $_SESSION['l'] ;?><i class="caret"></i>
 
                                 </a>
                                 <ul class="dropdown-menu">
@@ -45,7 +45,7 @@ else {
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a tabindex="-1" href="../login.html">Logout</a>
+                                        <a tabindex="-1" href="logout.php">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -139,8 +139,8 @@ else {
             <div class="row-fluid">
                 <div class="span3" id="sidebar">
                     <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
-                       
-                        <li  >
+                         
+                        <li class="active" >
                             <a href="../Fournisseur.php"> Fournisseur</a>
                         </li>
 
@@ -148,7 +148,7 @@ else {
                             <a href="../Commandef.php"> Commandes Fournisseur</a>
                         </li>
 
-                        <li class="active">
+                        <li>
                             <a href="../produit1.php"> Produit</a>
                         </li>
 
@@ -159,78 +159,72 @@ else {
                 </div>
                 <div class="span9" id="content">
                      <div class="row-fluid">
-                        
                     <!--block -->
                <div class="control-group">
-                <form method="GET" action="rechercherProduit.php">
-                                          <label class="control-label" for="typeahead">Référence Du Produit</label>
+                <form method="GET" action="rechercherFournisseur.php">
+                                          <label class="control-label" for="typeahead">Tapez mot clé</label>
                                           <div class="controls">
-                                            <input type="text" class="span6" id="typeahead" name="Referenceproduit" data-provide="typeahead" '>
-                                           <button type="submit" name="Rechercher" value="Rechercher" class="btn btn-info">Rechercher</button>
+                                            <input type="text" class="span6"   placeholder="Tapez ici" name="referenceF" required  >
+                                             <button type="submit" name="Rechercher" value="Rechercher" class="btn btn-info">Rechercher</button>
                 
-                                          
-                </form>
-                  <form method="GET" action="statistique.php">
-                                           <button type="submit" name="Statistique" value="Statistique" class="btn btn-info" style="margin-left:auto;margin-right:403px;display:block;"> Statistique </button>
-                                           </div>
-                </form>
-                 <form method="GET" action="pdf.php">
-                                           <button type="submit" value="Liste Produits Hors Stock" class="btn btn-info" style="margin-left:auto;margin-right:403px;display:block;"> Liste Produits Hors Stock </button>
-                                           </div>
+                                          </div>
                 </form>
                                         </div>
-                                         <!--block -->
+                                            <!--block -->
                                          <div class="control-group">
-                <form method="GET" action="trierProduit.php">
+                <form method="GET" action="trierFournisseur.php">
                                           <div class="controls">
-                                            <button type="submit" class="btn btn-large btn-block">Trier Le Tableau Produits</button>
+                                            <button type="submit" class="btn btn-large btn-block">Trier Le Tableau Fournisseurs</button>
                                           </div>
                 </form>
 
                       
                       <!-- block -->
+                      <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Produits</div>
+                                <div class="muted pull-left">Fournisseurs</div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
-                                    <table class="table table-bordered">
-                                      <thead>
+                                    <table class="table table-bordered" id ="indextable">
+                                       <thead>
                                        <?PHP
-include "../core/produitP.php";
-$Produit1P=new ProduitP();
-$listeProduit=$Produit1P->afficherProduits();
-$listepromotion=$Produit1P->modifierPrix();
-?>
-<table class="table table-bordered">
-<tr>
-<td>Reference Du produit</td>
-<td>Nomproduit</td>
-<td>Categorie</td>
-<td>Marque</td>
-<td>prix</td>
-<td>Date de publication</td>
-<td>Quantité</td>
-<td>Boutique</td>
-<td>Photo Du produit</td>
-<td>Description</td>
-</tr>
+  include "../core/fournisseurC.php";                                  
+$fournisseur1C=new FournisseurC();
+if (isset($_GET["referenceF"])){
+	$listefournisseur=$fournisseur1C->rechercherFournisseur2($_GET["referenceF"]);
+}
 
+
+
+
+?>
+
+<tr>
+<td><a href="#" onclick="SortTable(0 ,'N');">Reference fournisseur</td>
+<td><a href="#" onclick="SortTable(1 ,'T');">Nom</td>
+<td><a href="#" onclick="SortTable(2 ,'N');">Telephone</td>
+<td><a href="#" onclick="SortTable(3 ,'T');">Email</td>
+<td><a href="#" onclick="SortTable(4 ,'T');">Type de produit</td>
+<td><a href="#" onclick="SortTable(5 ,'N');">Note</td>
+<td><a href="#" onclick="SortTable(6 ,'N');">Retard</td>
+
+</tr>
+</thead>
+<tbody>
 <?PHP
-foreach($listeProduit as $row){
+foreach($listefournisseur as $row){
 	?>
 	<tr>
-	<td><?PHP echo $row['Referenceproduit']; ?></td>
-	<td><?PHP echo $row['Nomproduit']; ?></td>
-	<td><?PHP echo $row['Categorie']; ?></td>
-	<td><?PHP echo $row['Marque']; ?></td>
-    <td><?PHP echo $row['prix']; ?> DT</td>
-	<td><?PHP echo $row['Datedepublication']; ?></td>
-    <td><?PHP echo $row['quantite']; ?></td>
-	<td><?PHP echo $row['Boutique']; ?></td>
-     <td> <?PHP echo "<img src='../image/".$row["photodeproduit"]."' width='150px' >";    ?>  </td>
-	<td><?PHP echo $row['description']; ?></td>
+	<td><?PHP echo $row['referenceF']; ?></td>
+	<td><?PHP echo $row['nom']; ?></td>
+	<td><?PHP echo $row['telephone']; ?></td>
+	<td><?PHP echo $row['email']; ?></td>
+    <td><?PHP echo $row['type_produit']; ?> </td>
+	<td><?PHP echo $row['note']; ?> </td>
+	<td><?PHP echo $row['retard']; ?> </td>
+	
 	</tr>
 	<?PHP
 }
@@ -241,47 +235,7 @@ foreach($listeProduit as $row){
                                     </table>
                                 </div>
                             </div>
-                        </div>       
-                        
-                        <!-- block -->
-
-                       
-                        <div class="block">
-                            <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Promotions Et Nouveau Prix</div>
-                            </div>
-                            <div class="block-content collapse in">
-                                <div class="span12">
-                                    <table class="table table-bordered">
-                                      <thead>
-                                       <?PHP
-$Produit1P=new ProduitP();
-$listepromotion=$Produit1P->modifierPrix();
-?>
-<table class="table table-bordered">
-<tr>
-<td>Reference Du produit</td>
-<td>Nouveau Prix</td>
-
-</tr>
-
-  <?PHP
-foreach($listepromotion as $row){
-    ?>
-    <tr>
-    <td><?PHP echo $row['Referenceproduit']; ?></td>
-    <td><?PHP echo $row['prix']-($row['solde']/100)*$row['prix']; ?> DT</td>
-    </tr>
-    <?PHP
-}
-?>
-
-                                      </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>                      
-                        <!-- /block -->
                       
                         <!-- /block -->
                     </div>
@@ -293,7 +247,101 @@ foreach($listepromotion as $row){
                      <div class="row-fluid">
                         
            
-        
+        <script type="text/javascript">
+var TableIDvalue = "indextable";
+var TableLastSortedColumn = -1;
+function SortTable() {
+var sortColumn = parseInt(arguments[0]);
+var type = arguments.length > 1 ? arguments[1] : 'T';
+var dateformat = arguments.length > 2 ? arguments[2] : '';
+var table = document.getElementById(TableIDvalue);
+var tbody = table.getElementsByTagName("tbody")[0];
+var rows = tbody.getElementsByTagName("tr");
+var arrayOfRows = new Array();
+type = type.toUpperCase();
+dateformat = dateformat.toLowerCase();
+for(var i=0, len=rows.length; i<len; i++) {
+    arrayOfRows[i] = new Object;
+    arrayOfRows[i].oldIndex = i;
+    var celltext = rows[i].getElementsByTagName("td")[sortColumn].innerHTML.replace(/<[^>]*>/g,"");
+    if( type=='D' ) { arrayOfRows[i].value = GetDateSortingKey(dateformat,celltext); }
+    else {
+        var re = type=="N" ? /[^\.\-\+\d]/g : /[^a-zA-Z0-9]/g;
+        arrayOfRows[i].value = celltext.replace(re,"").substr(0,25).toLowerCase();
+        }
+    }
+if (sortColumn == TableLastSortedColumn) { arrayOfRows.reverse(); }
+else {
+    TableLastSortedColumn = sortColumn;
+    switch(type) {
+        case "N" : arrayOfRows.sort(CompareRowOfNumbers); break;
+        case "D" : arrayOfRows.sort(CompareRowOfNumbers); break;
+        default  : arrayOfRows.sort(CompareRowOfText);
+        }
+    }
+var newTableBody = document.createElement("tbody");
+for(var i=0, len=arrayOfRows.length; i<len; i++) {
+    newTableBody.appendChild(rows[arrayOfRows[i].oldIndex].cloneNode(true));
+    }
+table.replaceChild(newTableBody,tbody);
+} // function SortTable()
+
+function CompareRowOfText(a,b) {
+var aval = a.value;
+var bval = b.value;
+return( aval == bval ? 0 : (aval > bval ? 1 : -1) );
+} // function CompareRowOfText()
+
+function CompareRowOfNumbers(a,b) {
+var aval = /\d/.test(a.value) ? parseFloat(a.value) : 0;
+var bval = /\d/.test(b.value) ? parseFloat(b.value) : 0;
+return( aval == bval ? 0 : (aval > bval ? 1 : -1) );
+} // function CompareRowOfNumbers()
+
+function GetDateSortingKey(format,text) {
+if( format.length < 1 ) { return ""; }
+format = format.toLowerCase();
+text = text.toLowerCase();
+text = text.replace(/^[^a-z0-9]*/,"");
+text = text.replace(/[^a-z0-9]*$/,"");
+if( text.length < 1 ) { return ""; }
+text = text.replace(/[^a-z0-9]+/g,",");
+var date = text.split(",");
+if( date.length < 3 ) { return ""; }
+var d=0, m=0, y=0;
+for( var i=0; i<3; i++ ) {
+    var ts = format.substr(i,1);
+    if( ts == "d" ) { d = date[i]; }
+    else if( ts == "m" ) { m = date[i]; }
+    else if( ts == "y" ) { y = date[i]; }
+    }
+d = d.replace(/^0/,"");
+if( d < 10 ) { d = "0" + d; }
+if( /[a-z]/.test(m) ) {
+    m = m.substr(0,3);
+    switch(m) {
+        case "jan" : m = String(1); break;
+        case "feb" : m = String(2); break;
+        case "mar" : m = String(3); break;
+        case "apr" : m = String(4); break;
+        case "may" : m = String(5); break;
+        case "jun" : m = String(6); break;
+        case "jul" : m = String(7); break;
+        case "aug" : m = String(8); break;
+        case "sep" : m = String(9); break;
+        case "oct" : m = String(10); break;
+        case "nov" : m = String(11); break;
+        case "dec" : m = String(12); break;
+        default    : m = String(0);
+        }
+    }
+m = m.replace(/^0/,"");
+if( m < 10 ) { m = "0" + m; }
+y = parseInt(y);
+if( y < 100 ) { y = parseInt(y) + 2000; }
+return "" + String(y) + "" + String(m) + "" + String(d) + "";
+} // function GetDateSortingKey()
+</script>
         <!--/.fluid-container-->
 
         <script src="../vendors/jquery-1.9.1.js"></script>
@@ -308,6 +356,7 @@ foreach($listepromotion as $row){
             
         });
         </script>
-    </body>
 <?php } ?>
+    </body>
+
 </html>

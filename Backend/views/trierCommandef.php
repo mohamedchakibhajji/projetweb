@@ -1,16 +1,16 @@
-<?php
-
+<?PHP 
 session_start();
 if (empty($_SESSION['l'])) {
-    header("location:../login.html");
+    header("location:login.html");
 }
-else {
+else { 
+
 ?>
 <!DOCTYPE html>
 <html class="no-js">
     
     <head>
-        <title>Produit</title>
+        <title>Commande fournisseur</title>
         <!-- Bootstrap -->
         <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
@@ -36,7 +36,7 @@ else {
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li class="dropdown">
-                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i><?PHP echo $_SESSION['l'] ;?><i class="caret"></i>
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> <?PHP echo $_SESSION['l'] ;?><i class="caret"></i>
 
                                 </a>
                                 <ul class="dropdown-menu">
@@ -45,7 +45,7 @@ else {
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a tabindex="-1" href="../login.html">Logout</a>
+                                        <a tabindex="-1" href="logout.php">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -139,98 +139,92 @@ else {
             <div class="row-fluid">
                 <div class="span3" id="sidebar">
                     <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
-                       
-                        <li  >
+                        <li >
                             <a href="../Fournisseur.php"> Fournisseur</a>
                         </li>
 
-                         <li >
+                         <li class="active"  >
                             <a href="../Commandef.php"> Commandes Fournisseur</a>
                         </li>
 
-                        <li class="active">
+                        <li>
                             <a href="../produit1.php"> Produit</a>
                         </li>
 
                          <li>
                             <a href="../promotion1.php">Promotion</a>
                         </li>
+
                     </ul>
                 </div>
                 <div class="span9" id="content">
                      <div class="row-fluid">
-                        
                     <!--block -->
                <div class="control-group">
-                <form method="GET" action="rechercherProduit.php">
-                                          <label class="control-label" for="typeahead">Référence Du Produit</label>
+                <form method="GET" action="rechercherCommandef.php">
+                                          <label class="control-label" >Tapez mot clé</label>
                                           <div class="controls">
-                                            <input type="text" class="span6" id="typeahead" name="Referenceproduit" data-provide="typeahead" '>
+                                            <input type="text" class="span6"  name="referenceC" placeholder="Tapez ici" required data-provide="typeahead" >
                                            <button type="submit" name="Rechercher" value="Rechercher" class="btn btn-info">Rechercher</button>
                 
-                                          
-                </form>
-                  <form method="GET" action="statistique.php">
-                                           <button type="submit" name="Statistique" value="Statistique" class="btn btn-info" style="margin-left:auto;margin-right:403px;display:block;"> Statistique </button>
-                                           </div>
-                </form>
-                 <form method="GET" action="pdf.php">
-                                           <button type="submit" value="Liste Produits Hors Stock" class="btn btn-info" style="margin-left:auto;margin-right:403px;display:block;"> Liste Produits Hors Stock </button>
-                                           </div>
+                                          </div>
                 </form>
                                         </div>
-                                         <!--block -->
+                        <!--block -->
                                          <div class="control-group">
-                <form method="GET" action="trierProduit.php">
+                <form method="GET" action="trierCommandef.php">
                                           <div class="controls">
-                                            <button type="submit" class="btn btn-large btn-block">Trier Le Tableau Produits</button>
+                                            <button type="submit" class="btn btn-large btn-block">Trier Le Tableau Commandes</button>
                                           </div>
                 </form>
 
                       
                       <!-- block -->
+                      <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Produits</div>
+                                <div class="muted pull-left">Commandes</div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
                                     <table class="table table-bordered">
                                       <thead>
                                        <?PHP
-include "../core/produitP.php";
-$Produit1P=new ProduitP();
-$listeProduit=$Produit1P->afficherProduits();
-$listepromotion=$Produit1P->modifierPrix();
+include "../core/commandefC.php";
+
+$Commande1C=new CommandefC();
+
+	$listecommandef=$Commande1C->trierCommandef();
+
+
+
+
+
 ?>
 <table class="table table-bordered">
 <tr>
-<td>Reference Du produit</td>
-<td>Nomproduit</td>
-<td>Categorie</td>
-<td>Marque</td>
-<td>prix</td>
-<td>Date de publication</td>
-<td>Quantité</td>
-<td>Boutique</td>
-<td>Photo Du produit</td>
-<td>Description</td>
+<td>Reference Commande</td>
+<td>Titre</td>
+<td>Ref fournisseur</td>
+<td>quantite</td>
+<td>Date</td>
+<td>Etat</td>
+
+
 </tr>
 
 <?PHP
-foreach($listeProduit as $row){
+foreach($listecommandef as $row){
 	?>
 	<tr>
-	<td><?PHP echo $row['Referenceproduit']; ?></td>
-	<td><?PHP echo $row['Nomproduit']; ?></td>
-	<td><?PHP echo $row['Categorie']; ?></td>
-	<td><?PHP echo $row['Marque']; ?></td>
-    <td><?PHP echo $row['prix']; ?> DT</td>
-	<td><?PHP echo $row['Datedepublication']; ?></td>
-    <td><?PHP echo $row['quantite']; ?></td>
-	<td><?PHP echo $row['Boutique']; ?></td>
-     <td> <?PHP echo "<img src='../image/".$row["photodeproduit"]."' width='150px' >";    ?>  </td>
-	<td><?PHP echo $row['description']; ?></td>
+	<td><?PHP echo $row['referenceC']; ?></td>
+	<td><?PHP echo $row['titre']; ?></td>
+	<td><?PHP echo $row['ref_fournisseur']; ?></td>
+	<td><?PHP echo $row['quantite']; ?></td>
+	<td><?PHP echo $row['datec']; ?></td>
+	<td><?PHP echo $row['etat']; ?></td>
+    
+	
 	</tr>
 	<?PHP
 }
@@ -241,47 +235,8 @@ foreach($listeProduit as $row){
                                     </table>
                                 </div>
                             </div>
-                        </div>       
-                        
-                        <!-- block -->
-
-                       
-                        <div class="block">
-                            <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Promotions Et Nouveau Prix</div>
-                            </div>
-                            <div class="block-content collapse in">
-                                <div class="span12">
-                                    <table class="table table-bordered">
-                                      <thead>
-                                       <?PHP
-$Produit1P=new ProduitP();
-$listepromotion=$Produit1P->modifierPrix();
-?>
-<table class="table table-bordered">
-<tr>
-<td>Reference Du produit</td>
-<td>Nouveau Prix</td>
-
-</tr>
-
-  <?PHP
-foreach($listepromotion as $row){
-    ?>
-    <tr>
-    <td><?PHP echo $row['Referenceproduit']; ?></td>
-    <td><?PHP echo $row['prix']-($row['solde']/100)*$row['prix']; ?> DT</td>
-    </tr>
-    <?PHP
-}
-?>
-
-                                      </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>                      
-                        <!-- /block -->
+                   
                       
                         <!-- /block -->
                     </div>
@@ -308,6 +263,7 @@ foreach($listepromotion as $row){
             
         });
         </script>
-    </body>
 <?php } ?>
+    </body>
+
 </html>
