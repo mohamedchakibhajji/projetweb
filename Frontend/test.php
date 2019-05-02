@@ -1,6 +1,3 @@
-<?php
-require "_header.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,19 +72,19 @@ require "_header.php";
 				<div class="wrap_menu">
 					<nav class="menu">
 						<ul class="main_menu">
-							<li  >
-								<a href="index.html">Vêtement</a>
+							<li class="sale-noti">
+								<a href="index.html" >Vêtement</a>
 								<ul class="sub_menu">
-									<li  ><a href="produithomme.php">Homme</a></li>
+									<li class="sale-noti"><a href="produithomme.php">Homme</a></li>
 									<li><a href="produitfemme.php">Femme</a></li>
 								</ul>
 							</li>
-							<li class="sale-noti" >
+							<li>
 								<a href="materiel.php">Matériel</a>
 							</li>
 
 							<li>
-								<a href="cart.php">Panier</a>
+								<a href="cart.html">Panier</a>
 							</li>
 
 							<li>
@@ -168,7 +165,7 @@ require "_header.php";
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										View Cart
 									</a>
 								</div>
@@ -266,7 +263,7 @@ require "_header.php";
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										View Cart
 									</a>
 								</div>
@@ -344,7 +341,7 @@ require "_header.php";
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="cart.php">Features</a>
+						<a href="cart.html">Features</a>
 					</li>
 
 					<li class="item-menu-mobile">
@@ -364,12 +361,12 @@ require "_header.php";
 	</header>
 
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/materiel.jpg);">
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/sportpub.jpg);">
 		<h2 class="l-text2 t-center">
-			Matériel
+			Homme
 		</h2>
 		<p class="m-text13 t-center">
-		 Collection 2019
+			 Collection 2019
 		</p>
 	</section>
 
@@ -427,16 +424,69 @@ require "_header.php";
 							</div>
 
 							<div class="flex-sb-m flex-w p-t-16">
+								<div class="w-size11">
+									<!-- Button -->
+									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
+										Filter
+									</button>
+								</div>
 
 								<div class="s-text3 p-t-10 p-b-10">
-									Range: <span id="value-lower">610</span> DT - <span id="value-upper">980</span> DT
+									Range: $<span id="value-lower">610</span> - $<span id="value-upper">980</span>
 								</div>
 							</div>
 						</div>
 
-				
+						<div class="filter-color p-t-22 p-b-50 bo3">
+							<div class="m-text15 p-b-12">
+								Color
+							</div>
 
-					
+							<ul class="flex-w">
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter1" type="checkbox" name="color-filter1">
+									<label class="color-filter color-filter1" for="color-filter1"></label>
+								</li>
+
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter2" type="checkbox" name="color-filter2">
+									<label class="color-filter color-filter2" for="color-filter2"></label>
+								</li>
+
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter3" type="checkbox" name="color-filter3">
+									<label class="color-filter color-filter3" for="color-filter3"></label>
+								</li>
+
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter4" type="checkbox" name="color-filter4">
+									<label class="color-filter color-filter4" for="color-filter4"></label>
+								</li>
+
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter5" type="checkbox" name="color-filter5">
+									<label class="color-filter color-filter5" for="color-filter5"></label>
+								</li>
+
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter6" type="checkbox" name="color-filter6">
+									<label class="color-filter color-filter6" for="color-filter6"></label>
+								</li>
+
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter7" type="checkbox" name="color-filter7">
+									<label class="color-filter color-filter7" for="color-filter7"></label>
+								</li>
+							</ul>
+						</div>
+
+						<div class="search-product pos-relative bo4 of-hidden">
+							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
+
+							<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
+								<i class="fs-12 fa fa-search" aria-hidden="true"></i>
+							</button>
+						</div>
 					</div>
 				</div>
 
@@ -447,14 +497,17 @@ require "_header.php";
 						<div class="flex-w">
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
 								<select class="selection-2" name="sorting" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-									<option value="materiel.php">Default Sorting</option>
-									<option value="/Frontend/newmateriel.php">New</option>
-									<option  value="/Frontend/tricroissantmateriel.php" >Price: low to high</option>
-									<option  value="/Frontend/tridecroissantmateriel.php">Price: high to low</option>
+									<option value="produithomme.php">Default Sorting</option>
+									<option value="new.php">New</option>
+									<option  >Price: low to high</option>
+									<option  value="/Frontend/views/trierdecroi.php">Price: high to low</option>
 								</select>
 							</div>
 						</div>
                          </form>
+						<span class="s-text8 p-t-5 p-b-5">
+							Showing 1–12 of 16 results
+						</span>
 					</div>
   
 					<!-- Product -->
@@ -462,10 +515,10 @@ require "_header.php";
   <?PHP
 include "../Backend/core/produitP.php";
 $Produit1P=new ProduitP();
-$listeProduit=$Produit1P->newmateriel();
-
+$listeProduit=$Produit1P->trierProduit();
+$listepromotion=$Produit1P->modifierPrix();
 ?>                  
-							<div class="row">
+						<div class="row">
 
 								
 							<!-- Block2 -->
@@ -479,56 +532,41 @@ foreach($listeProduit as $row){
 		<div class="block2">
 								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew"  >
                                       <?= "<img src='../Backend/image/".$row["photodeproduit"]."' height='350 px'   >";    ?>    
-									   <div class="block2-overlay trans-0-4">
-                    <a href="addwishlist.php?id=<?= $row['Referenceproduit'];?>"class="addPanier block2-btn-addwishlist hov-pointer trans-0-4">
-                      <i class="addPanier icon-wishlist icon_heart_alt" href="addwishlist.php?id=<?= $row['Referenceproduit'];?>" aria-hidden="true"></i>
-                      <i class="addPanier icon-wishlist icon_heart dis-none" 
-                      href="addwishlist.php?id=<?= $row['Referenceproduit'];?>"aria-hidden="true"></i>
-                    </a>
+									<div class="block2-overlay trans-0-4">
+										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+										</a>
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<a   class="addPanier flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" name "addPaniers"  href="addpanier.php?id=<?= $row['Referenceproduit'];?>" >Add to Cart</a>
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+												Add to Cart
+											</button>
 										</div>
 									</div>
-								</div>
-								</div>
 
 								<div class="block2-txt p-t-20">
-										<input type="hidden" name="Referenceproduit" value="<?PHP echo $row['Referenceproduit'];  ?>">
-									<a href="product-detail2.php?ref=<?= $row['Referenceproduit']; ?>" class="block2-name dis-block s-text3 p-b-5">
+									<a href="product-detail.html" type="balise" class="block2-name dis-block s-text3 p-b-5">
 									<?PHP echo $row['Nomproduit'] ; ?>
 									</a>
-									
-   
-										<?php $listepromotion=$Produit1P->modifierPrixs($row['Referenceproduit']);?>
-                             	<?PHP
-                             	$i=$row['prix'];
-                             	$reference=$row['Referenceproduit'];
-                             	if($listepromotion->rowCount()==0){
-                             		echo '<span class="block2-price m-text6 p-r-5">
-									<prix>'.$i.'</prix>DT
-									</span>';	
-                             	}
-foreach($listepromotion as $row){
-	?>   
-	<?php
-echo '<del class="block2-price m-text6 p-r-5 block2-labelsale">
-									<prix>'.$i.'</prix>DT
-									</del>';
-									?>
-	<span class="block2-newprice m-text8 p-r-5">
-
-										<?PHP echo $row['prix']-($row['solde']/100)*$row['prix']; ?> DT
-
+									<span class="block2-price m-text6 p-r-5">
+										<?PHP echo $row['prix']; ?> DT
 									</span>
+ <?PHP
+foreach($listepromotion as $row){
+	?>    
 									
-    	<?PHP
+                             
+									<span class="block2-newprice m-text8 p-r-5">
+										<?PHP echo $row['prix']-($row['solde']/100)*$row['prix']; ?> DT
+									</span>
+										<?PHP
 }
-?>
+	?>    
 	</div>
-							
-								
+								</div>
+								</div>
 								</div>
 
 	
@@ -537,6 +575,11 @@ echo '<del class="block2-price m-text6 p-r-5 block2-labelsale">
 ?>
                          
 						   </div>
+
+
+						   </div>
+					    </div>
+
 
 					<!-- Pagination -->
 					<div class="pagination flex-m flex-w p-t-26">
@@ -587,13 +630,13 @@ echo '<del class="block2-price m-text6 p-r-5 block2-labelsale">
 					</li>
 
 					<li class="p-b-9">
-						<a href="produitfemme.php" class="s-text7">
+						<a href="femme.html" class="s-text7">
 							Femme
 						</a>
 					</li>
 
 					<li class="p-b-9">
-						<a href="materiel.php" class="s-text7">
+						<a href="materiel.html" class="s-text7">
 							Matériel
 						</a>
 					</li>
@@ -640,8 +683,6 @@ echo '<del class="block2-price m-text6 p-r-5 block2-labelsale">
 
 
 
-
-
 	<!-- Back to top -->
 	<div class="btn-back-to-top bg0-hov" id="myBtn">
 		<span class="symbol-btn-back-to-top">
@@ -664,7 +705,36 @@ echo '<del class="block2-price m-text6 p-r-5 block2-labelsale">
 	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
-<script type="text/javascript">
+	<script type="text/javascript">
+
+		$(function(){
+			$("[name='search-product']").keyup(function(){
+				$(".block2").each(function(){
+					var chaine=$("[name='search-product']").val();
+					var n1=$(this).find('[type="balise"]').text()
+					t=n1.indexOf(chaine);
+					if(t==-1){
+						$(this).parent().hide();
+					}
+					else{
+						$(this).parent().show();
+					}
+					
+				})
+			})
+		})
+		$(".selection-1").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect2')
+		});
+	</script>
+	<!--===============================================================================================-->
+	<script type="text/javascript">
 
 		$(function(){
 
@@ -672,7 +742,7 @@ echo '<del class="block2-price m-text6 p-r-5 block2-labelsale">
 				var min=parseFloat($('#value-lower').text());
 				var max=parseFloat($('#value-upper').text());
 				$(".block2").each(function(){
-					var prix=parseFloat($(this).parent().find("prix").text());
+					var prix=parseFloat($(this).find("prix").text());
 					if(prix>=min && prix<=max){
 						$(this).parent().show();
 					}
@@ -694,6 +764,7 @@ echo '<del class="block2-price m-text6 p-r-5 block2-labelsale">
 			dropdownParent: $('#dropDownSelect2')
 		});
 	</script>
+<!--===============================================================================================-->
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>
 	<script type="text/javascript" src="vendor/daterangepicker/daterangepicker.js"></script>
@@ -726,10 +797,10 @@ echo '<del class="block2-price m-text6 p-r-5 block2-labelsale">
 	    var filterBar = document.getElementById('filter-bar');
 
 	    noUiSlider.create(filterBar, {
-	        start: [ 0, 500 ],
+	        start: [ 50, 500 ],
 	        connect: true,
 	        range: {
-	            'min': 0,
+	            'min': 50,
 	            'max': 500
 	        }
 	    });
@@ -745,8 +816,6 @@ echo '<del class="block2-price m-text6 p-r-5 block2-labelsale">
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
 
 </body>
 </html>

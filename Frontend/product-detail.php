@@ -516,8 +516,8 @@
 							<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
 								<!-- Button -->
 								<?PHP
-include "../entities/Wishlist.php";
-include "../core/WishlistW.php";
+include "entities/Wishlist.php";
+include "core/WishlistW.php";
 $wishlist=new Whishlist(75757,23);
 $wishlist=new WishlistW();
 $WishlistW->ajoutWishlist($Wishlist);

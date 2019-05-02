@@ -29,6 +29,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/zoom.css">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -359,7 +360,7 @@
 	</header>
 
 	<!-- breadcrumb -->
-	
+
 
 	<!-- Product Detail -->
 	<?PHP
@@ -379,7 +380,7 @@ foreach($listeProduit as $row){
 	<?php $listepromotion=$Produit1P->modifierPrixs($row['Referenceproduit']);?>
 
 						
-							<div class="wrap-pic-w">
+							<div style="margin-left: -123px; margin-top: -30px" class="zoom">
 								 <?= "<img src='../Backend/image/".$row["photodeproduit"]."'    >";    ?>  
 							</div>
 					
@@ -387,11 +388,11 @@ foreach($listeProduit as $row){
 			</div>
 
 			<div class="w-size14 p-t-30 respon5">
-				<h4 class="product-detail-name m-text16 p-b-13">
+				<h4 class="product-detail-name m-text16 p-b-13" name="Nomproduit">
 					 <?PHP echo $row['Nomproduit'];  ?>
 				</h4>
 
-				<span class="m-text17">
+				<span class="m-text17" name="prix">
 					 <?PHP echo $row['prix'];  ?> DT
 				</span>
 
@@ -435,23 +436,32 @@ foreach($listeProduit as $row){
 
 							<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
 								<!-- Button -->
-								<td><input type="submit" name="ajouter" value="ajouter"></td>
+								<?PHP
+include "entities/Wishlist.php";
+include "core/WishlistW.php";
+$wishlist=new Whishlist(75757,23);
+$wishlist=new WishlistW();
+
+//$CommandeC->afficherWishlist($Wishlist);
+
+
+?>
+								<td><input type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" name="ajouter" value="Acheter"></td>
 
 							</div>
 						</div>
 
 					</div>
-
-				</div>
-
-
-				<div class="p-b-45">
-
-					<span class="s-text8 m-r-35">Réf: <?PHP echo $_GET['ref'];  ?></span>
-					<span class="s-text8">Categories:  <?PHP echo $row['Categorie'];  ?></span>
-
-				</div>
-				<span class="s-text8 ">Stock: <?PHP if ($row['quantite']>0) 
+						<div class="s-text8 m-r-35" name="id_commande">Réf: <?PHP echo $_GET['ref'];  ?></div>
+						<br/>
+						<br/>
+					<div class="s-text8">Categories:  <?PHP echo $row['Categorie'];  ?></div>
+					<br/>
+					<br/>
+					<div class="s-text8" name="couleur">Marque:  <?PHP echo $row['Marque'];  ?></div>
+					<br/>
+					<br/>
+        <div class="s-text8 ">Stock: <?PHP if ($row['quantite']>0) 
 				{
 					echo '<span class="block2-price m-text6 p-r-5">
 									En Stock
@@ -461,8 +471,14 @@ foreach($listeProduit as $row){
 					echo '<span class="block2-price m-text6 p-r-5">
 									Hors Stock
 									</span>';
-				 ?></span>
+				 ?></div>
 
+
+				</div>
+
+
+				
+				
 				<!--  -->
 				<div class="wrap-dropdown-content bo6 p-t-15 p-b-14 active-dropdown-content">
 					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">

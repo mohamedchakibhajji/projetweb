@@ -417,22 +417,7 @@ require "_header.php";
 							Filters
 						</h4>
 
-						<div class="filter-price p-t-22 p-b-50 bo3">
-							<div class="m-text15 p-b-17">
-								Price
-							</div>
-
-							<div class="wra-filter-bar">
-								<div id="filter-bar"></div>
-							</div>
-
-							<div class="flex-sb-m flex-w p-t-16">
-
-								<div class="s-text3 p-t-10 p-b-10">
-									Range: <span id="value-lower">610</span> DT - <span id="value-upper">980</span> DT
-								</div>
-							</div>
-						</div>
+						
 
 				
 
@@ -453,10 +438,10 @@ require "_header.php";
 						<div class="flex-w">
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
 								<select class="selection-2" name="sorting" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-									<option value="produithomme.php">Default Sorting</option>
-									<option value="/Frontend/new.php">New</option>
-									<option  value="/Frontend/tricroissant.php" >Price: low to high</option>
-									<option  value="/Frontend/trierdecroi.php">Price: high to low</option>
+									<option value="accessoires.php">Default Sorting</option>
+									<option value="newaccessoires.php">New</option>
+									<option  value="triaccessoires.php" >Price: low to high</option>
+									<option  value="tridecroitaccessoires.php">Price: high to low</option>
 								</select>
 							</div>
 						</div>
@@ -676,7 +661,9 @@ echo '<del class="block2-price m-text6 p-r-5 block2-labelsale">
 			$("[name='search-product']").keyup(function(){
 				$(".block2").each(function(){
 					var chaine=$("[name='search-product']").val();
-					var n1=$(this).find('[href="product-detail.html"]').text()
+					chaine=chaine.toLowerCase();
+					var n1=$(this).parent().find('.block2-name').text();
+					n1=n1.toLowerCase();
 					t=n1.indexOf(chaine);
 					if(t==-1){
 						$(this).parent().hide();

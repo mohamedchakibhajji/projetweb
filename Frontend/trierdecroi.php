@@ -436,13 +436,6 @@ require "_header.php";
 
 				
 
-						<div class="search-product pos-relative bo4 of-hidden">
-							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
-
-							<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
-								<i class="fs-12 fa fa-search" aria-hidden="true"></i>
-							</button>
-						</div>
 					</div>
 				</div>
 
@@ -673,22 +666,23 @@ echo '<del class="block2-price m-text6 p-r-5 block2-labelsale">
 	<script type="text/javascript">
 
 		$(function(){
-			$("[name='search-product']").keyup(function(){
+
+			setInterval(function(){
+				var min=parseFloat($('#value-lower').text());
+				var max=parseFloat($('#value-upper').text());
 				$(".block2").each(function(){
-					var chaine=$("[name='search-product']").val();
-					var n1=$(this).find('[href="product-detail.html"]').text()
-					t=n1.indexOf(chaine);
-					if(t==-1){
-						$(this).parent().hide();
-					}
-					else{
+					var prix=parseFloat($(this).parent().find("prix").text());
+					if(prix>=min && prix<=max){
 						$(this).parent().show();
 					}
+					else{
+						$(this).parent().hide();
+					}
 					
-				})
-			})
-
+				})				
+			},100)
 		})
+
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect1')
