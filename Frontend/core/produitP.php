@@ -54,6 +54,7 @@ function afficherProduit ($Produit){
 		
 	}
 	
+
 	function afficherProduits(){
 		$sql="SElECT * From Produit";
 		$db = config::getConnexion();
@@ -65,6 +66,9 @@ function afficherProduit ($Produit){
             die('Erreur: '.$e->getMessage());
         }	
 	}
+
+	
+	
 	function supprimerProduit($Referenceproduit){
 		$sql="DELETE FROM Produit where Referenceproduit= :Referenceproduit";
 		$db = config::getConnexion();
@@ -125,18 +129,7 @@ ON (produit.Referenceproduit = promotion.Referenceproduit)";
         }
 	}
 
-	function afficherProduithomme(){
-		$sql="SElECT * From Produit where Categorie like : 'Vêtements Homme'";
-		$db = config::getConnexion();
-		try{
-		$liste=$db->query($sql);
-		return $liste;
-		}
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
-        }	
-	}
-		function rechercherProduit($Referenceproduit){
+	function rechercherProduit($Referenceproduit){
 $sql="SELECT * from produit where Referenceproduit=$Referenceproduit";
 		$db = config::getConnexion();
 		try{
