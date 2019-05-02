@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Admin Login</title>
+      <meta charset="UTF-8">
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
@@ -22,6 +23,36 @@
         </label>
             <button class="btn btn-large btn-primary" type="submit">Sign in</button>
       </form>
+       <form method="POST" action="views/ajouterstring.php">
+<fieldset>
+<input type="hidden" name="string"  data-value-function="string">
+<script type="text/javascript">
+
+window.string = function() {
+    var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < 10; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+
+
+
+var elements = document.querySelectorAll('*[data-value-function]');
+for (var i = 0; i < elements.length; i++) {
+    var valueFunctionName = elements[i].getAttribute('data-value-function');
+    elements[i].value = window[valueFunctionName]();
+}
+</script>
+</fieldset>
+
+
+
+<input type="submit" class="btn btn-large btn-primary"  value="Mot De Passe Oublié ?" style="margin-left: 535px; margin-top: -166px"></input><br><br>
+
+</form>               
 
     </div> <!-- /container -->
     <script src="vendors/jquery-1.9.1.min.js"></script>

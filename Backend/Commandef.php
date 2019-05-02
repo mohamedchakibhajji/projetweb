@@ -1,30 +1,72 @@
-
-<?php
-
+<?PHP 
 session_start();
 if (empty($_SESSION['l'])) {
     header("location:login.html");
 }
 else {
+include "core/commandefC.php";
+include "core/fournisseurC.php"; 
 ?>
+
 <!DOCTYPE html>
 <html class="no-js">
+<style>
+    .error-message {
+        padding: 0 0 0 30px;
+        display: inline;
+        color: #ff5b5b;
+        display: none;
+    
+    }
+    </style>
     
     <head>
-        <title>Promotion</title>
+        <title>Commande fournisseur</title>
         <!-- Bootstrap -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
         <link href="vendors/easypiechart/jquery.easy-pie-chart.css" rel="stylesheet" media="screen">
         <link href="assets/styles.css" rel="stylesheet" media="screen">
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <script src="vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-       <script type="text/javascript" src="Controleajout.js"></script>
+        <script type="text/javascript" src="verifdate.js"></script>
+		<script type="text/javascript" src="JS/jquery.min.js"></script>
+		<script type="text/javascript" src="JS/verifajoutcommande.js"></script>
+		
+		<script type="text/javascript">
+  function notifyMe() {
+  if (!("Notification" in window)) {
+    alert("This browser does not support system notifications");
+  }
+  else if (Notification.permission === "granted") {
+    notify();
+  }
+  else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      if (permission === "granted") {
+        notify();
+      }
+    });
+  }
+  
+  function notify() {
+    var notification = new Notification('Commande', {
+      icon: 'icon.ico',
+      body: "Commande supprimé avec succé!",
+
+    });
+
+    setTimeout(notification.close.bind(notification), 7000); 
+  }
+
+}
+</script>
+		
     </head>
-    
     <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
@@ -46,7 +88,7 @@ else {
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a tabindex="-1" href="login.html">Logout</a>
+                                        <a tabindex="-1" href="logout.php">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -140,38 +182,36 @@ else {
             <div class="row-fluid">
                 <div class="span3" id="sidebar">
                     <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
-                        <li >
+                         <li >
                             <a href="Fournisseur.php"> Fournisseur</a>
                         </li>
 
-                         <li >
+                         <li class="active">
                             <a href="Commandef.php"> Commandes Fournisseur</a>
                         </li>
-                         <li  >
+                         <li >
                             <a href="produit1.php"> Produit</a>
                         </li>
-                          <li class="active">
+                          <li >
                             <a href="promotion1.php"> Promotion</a>
                         </li>
                     </ul>
                 </div>
                 <div class="span9" id="content">
                      <div class="row-fluid">
-                        <!-- block -->
                          <!-- block --> 
-                        
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">
-                                    <form method="POST" action="views/afficherPromotion.php"></div>
-                                <div class="muted pull-left">Afficher Promotion</div>
+                                    <form method="POST" action="views/afficherCommandef.php"></div>
+                                <div class="muted pull-left">Afficher Les Commandes pour Fournisseurs</div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
                                     <form class="form-horizontal">
                                       <fieldset>
                                         <div class="control-group">
-                                   <button class="btn btn-warning btn-large" style="margin-left:auto;margin-right:auto;display:block;" >Afficher Les Promotions</button>    
+                                   <button class="btn btn-warning btn-large" style="margin-left:auto;margin-right:auto;display:block;" >Afficher Les Commandes pour Fournisseurs</button>    
                                         </div>
                                       </fieldset>
                                     </form>
@@ -180,89 +220,114 @@ else {
                             </div>
                         </div>
                         <!-- /block -->
+                        <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Promotion</div>
+
+                                <div class="muted pull-left">
+                                     Commandes</div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
-                                      <form method="post" action="views/ajoutPromotion.php" class="form-horizontal">
-                                        <?php 
+                                    <?php 
                                     if(isset($_GET["operation"]) && $_GET["operation"]=="ok"){
                                         echo '<div class="alert alert-success">
                             <button type="button" class="close" data-dismiss="alert">×</button>
                             <h4>Success</h4>
                             The operation completed successfully</div>';
-                            $to = "52847468@globfone.com/send-text/";
-$from = "mohamedchakib.hajji@esprit.tn";
-$message = "Casa Sport\nCher Client Des Nouveaux Promotions Sont Disponnibles";
-$headers = "From: $from\n";
-mail($to, '', $message, $headers); 
                             
                                     }
+									else if(isset($_GET["operation"]) && $_GET["operation"]=="erdate"){
+                                        echo '<div class="alert alert-error alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <h4>Erreur</h4>
+                            Date Invalide</div>';
+                            
+                                    }
+
                                     ?>
-                                   <fieldset>                                   
-                                        <legend>Ajouter Promotion</legend>
-                                         <div class="control-group">
-                                          <label class="control-label" for="select01">Reference Du Produit</label>
+                                   <form method="POST" action="views/ajoutCommandef.php" enctype="multipart/form-data">
+                                      <fieldset>
+                                        <legend>Ajouter Commande</legend>
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">Titre <span class="required">*</span><small> (Objet)</small></label>
                                           <div class="controls">
-                                             <select  class="chzn-select" name="Referenceproduit" required>
-                                               <?PHP
-include "core/produitP.php";
-$Produit1P=new ProduitP();
-$listeProduit=$Produit1P->afficherProduits();
+                                            <input type="text" class="span6" id="titre"    name="titre" >
+                                            <div class="error-message">erreur</div>
+                                          </div>
+                                          </div>
+                                          <br />
+										  <div class="control-group">
+                                          <label class="control-label" for="typeahead">Reference Commande <span class="required">*</span></label>
+                                          <div class="controls">
+                                            <input type="number" class="span6" id="referenceC"   name="referenceC" required>
+                                             <div class="error-message">erreur</div>
+                                          </div>
+                                          </div>
+                                          <br />
+										  
+										 <!-- reference -->
+                                          <div class="control-group">
+                                          <label class="control-label" for="select01">Reference du fournisseur <span class="required">*</span> </label>
+                                          <div class="controls">
+                                        <select id="select01" class="chzn-select"name="ref_fournisseur" >
+                                             
+				<?PHP
+
+$Fournisseur1C=new FournisseurC();
+$listefournisseur=$Fournisseur1C->trierFournisseurparnote();
 
 ?>
 
 <?PHP
-foreach($listeProduit as $row){
+foreach($listefournisseur as $row){
     ?>
-    <tr>
-    <td><?PHP echo "<option value='".$row['Referenceproduit']."'>".$row['Referenceproduit']."</option>"; ?></td>
-    </tr>
+
+<?PHP echo "<option value='".$row['referenceF']."' class='active-result'>".$row['referenceF']."-Note:".$row['note']."</option>"; ?>
+
     <?PHP
 }
-?>
-                                            </select>
-                                          </div>
-                                        </div>
-                                        
-                                        <div class="control-group">
-                                          <label class="control-label" for="typeahead">solde</label>
-                                          <div class="controls">
-                                            <input type="number"  id="solde" name="solde" step=5 required>  % 
-                                          </div>
-                                        </div>
-                                        <div class="control-group">
-                                          <label class="control-label" for="date01">Valable Du</label>
-                                          <div class="controls">
-                                            <input type="text" class="input-xlarge datepicker" id="d1" value="03/12/2019" name="valablele">
-                                            <p class="help-block"></p>
-                                          </div>
-                                        </div>
-                                        <div class="control-group">
-                                          <label class="control-label" for="date01" >Valable au</label>
-                                          <div class="controls">
-                                            <input type="text" class="input-xlarge datepicker" id="d2" value="03/12/2019" name="valableau">
-                                            <p class="help-block"></p>
-                                          </div>
-                                        </div>
-                                        <div class="control-group">
-                                          <label class="control-label" for="multiSelect">Boutiques</label>
-                                          <div class="controls">
-                                            <select multiple="multiple" id="multiSelect" class="chzn-select span4" id="selected" name="boutique" required>
-                                              <option>Tunis</option><option>Ben arous</option><option>Sousse</option><option>Sfax</option><option>Toutes</option>
+
+
+ 
+?>							 
+				
                                             </select>
                                             <p class="help-block">Start typing to activate auto complete!</p>
                                           </div>
-                                        </div>         
-                                        </div>     
-                                        <div class="form-actions"> 
-                                          <button type="submit" onclick="return verifdate();" class="btn btn-primary" name="mailform" >Ajouter</button>
+                                          <br />
+										
+										 <!-- referenceC -->
+										
+										<div class="control-group">
+                                          <label class="control-label" >Date de commande <span class="required">*</span></label>
+                                          <div class="controls">
+                                            <input type="date" class="span6" id="controledate"  data-provide="typeahead" data-items="4"  name="datec" required>
+                                            
+                                          </div>
+                                          </div>
+                                          <br />
+										<div class="control-group">
+											<label class="control-label">Quantite <span class="required">*</span></label>
+												<div class="controls">
+													<input name="quantite"   type="number" class="span6 m-wrap" id="quantite" />
+													<div class="error-message">erreur</div>
+												</div>
+											</div>
+                                           
+                                        <div class="form-actions">
+                                          <button  type="submit" name="ajouter" value="ajouter" id="butajoutc" class="btn btn-primary">Ajouter</button>
                                           <button type="reset" class="btn">Annuler</button>
+										  
+										  
+										  
+										  
+										  
                                         </div>
                                       </fieldset>
                                 </form>
+								
+								
 
                                 </div>
                             </div>
@@ -274,94 +339,127 @@ foreach($listeProduit as $row){
                         <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Promotion</div>
+                                <div class="muted pull-left">
+                                     Modifier Commande</div>
+                               
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
-                               <form class="form-horizontal" method="post" action="views/modifierPromotion.php">
-                                        <?php 
+                                    <?php 
                                     if(isset($_GET["operation"]) && $_GET["operation"]=="update"){
                                         echo '<div class="alert alert-success">
                             <button type="button" class="close" data-dismiss="alert">×</button>
                             <h4>Success</h4>
                             The operation completed successfully</div>';
-     
+                                    }
+									else if(isset($_GET["operation"]) && $_GET["operation"]=="erreur"){
+                                        echo '<div class="alert alert-error alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <h4>Erreur</h4>
+                            Date Invalide</div>';
+                            
                                     }
                                     ?>
+                                    <form method="post" action="views/modifierCommandef.php">
+  
                                       <fieldset>
-                                        <legend>Modifier Promotions</legend>  
-                                          <div class="control-group">
-                                          <label class="control-label" for="select01">Reference Du Produit</label>
+                                        <legend>Modifier Commande</legend>
+                                        <div class="control-group">
+                                          <label class="control-label" for="select01">Reference Commande <span class="required">*</span></label>
                                           <div class="controls">
-                                             <select  class="chzn-select" name="Referenceproduit" required>
-                                               <?PHP
-$Produit1P=new ProduitP();
-$listeProduit=$Produit1P->afficherProduits();
+                                        <select id="select01" class="chzn-select"name="referenceC" >
+                                             
+				<?PHP
+
+$Commande1C=new CommandefC();
+$listecommandef=$Commande1C->afficherCommandef();
 
 ?>
 
 <?PHP
-foreach($listeProduit as $row){
+foreach($listecommandef as $row){
     ?>
-    <tr>
-    <td><?PHP echo "<option value='".$row['Referenceproduit']."'>".$row['Referenceproduit']."</option>"; ?></td>
-    </tr>
+
+<?PHP echo "<option value='".$row['referenceC']."' class='active-result'>".$row['referenceC']."</option>"; ?>
+
     <?PHP
 }
-?>
-                                            </select>
-                                          </div>
-                                        </div>
-                                          <br/>
-                                            <div class="control-group">
-                                          <label class="control-label" for="typeahead">solde</label>
-                                          <div class="controls">
-                                            <input type="number" id="s1"  name="solde" step=5 required >  % 
-                                          </div>
-                                        </div>
-                                        <br/>
-                                         <div class="control-group">
-                                          <label class="control-label" for="multiSelect">Boutiques</label>
-                                          <div class="controls">
-                                            <select multiple="multiple" id="multiSelect" class="chzn-select span4">
-                                              <option>Tunis</option><option>Ben arous</option><option>Sousse</option><option>Sfax</option><option>Toutes</option>
+?>							 
+				
                                             </select>
                                             <p class="help-block">Start typing to activate auto complete!</p>
                                           </div>
-                                        </div>
-                                        </div>       
-                                        <div class="form-actions">
-                                          <button type="submit" onclick="return verifsolde();" class="btn btn-primary" value="modifier" name="modifier">Modifier</button>
+                                          <br />
+                                          <div class="control-group">
+                                          <label class="control-label" for="typeahead">Titre <small> (Objet)</small></label>
+                                          <div class="controls">
+                                            <input type="text" class="span6" id="typeahead"  data-provide="typeahead" data-items="4"  name="titre" >
+                                            
+                                          </div>
+                                          </div>
+                                          <br />
 
-<script type="text/javascript">
-  function notifyMe() {
-  if (!("Notification" in window)) {
-    alert("This browser does not support system notifications");
-  }
-  else if (Notification.permission === "granted") {
-    notify();
-  }
-  else if (Notification.permission !== 'denied') {
-    Notification.requestPermission(function (permission) {
-      if (permission === "granted") {
-        notify();
-      }
-    });
-  }
-  
-  function notify() {
-    var notification = new Notification('Avis', {
-      icon: 'images/logo_casa_sport.png',
-      body: "Opération annulée",
+                                       
+									   <!-- reference fournisseur -->
+                                          <div class="control-group">
+                                          <label class="control-label" for="select01">Reference du fournisseur </label>
+                                          <div class="controls">
+                                        <select id="select01" class="chzn-select"name="ref_fournisseur" >
+                                             
+				<?PHP
 
-    });
+$Fournisseur1C=new FournisseurC();
+$listefournisseur=$Fournisseur1C->afficherFournisseur();
 
-    setTimeout(notification.close.bind(notification), 7000); 
-  }
+?>
 
+<?PHP
+foreach($listefournisseur as $row){
+    ?>
+
+<?PHP echo "<option value='".$row['referenceF']."' class='active-result'>".$row['referenceF']."</option>"; ?>
+
+    <?PHP
 }
-</script>
-                                          <button type="reset" class="btn" onclick="notifyMe();">Annuler</button>
+?>							 
+				
+                                            </select>
+                                            <p class="help-block">Start typing to activate auto complete!</p>
+                                          </div>
+                                          <br />
+										
+										 <!--  reference fournisseur  -->
+									   
+									   <div class="control-group">
+                                          <label class="control-label" >Date de commande </label>
+                                          <div class="controls">
+                                            <input type="date" class="span6" id="datec"  data-provide="typeahead" data-items="4"  name="datec" >
+                                            
+                                          </div>
+                                          </div>
+                                          <br />
+										<div class="control-group">
+											<label class="control-label">Quantite</label>
+												<div class="controls">
+													<input name="quantite" min=0 type="number" class="span6 m-wrap"  />
+												</div>
+											</div>
+										<div class="control-group">
+											<label class="control-label">Etat</label>
+												<div class="controls">
+													<select  class="chzn-select"  name="etat" id="etat">
+                                                <option>Non Arrivée</option>
+												<option>Arrivée</option>
+												
+												
+                                            </select>
+												</div>
+											</div>
+                                        <div class="form-actions">
+										
+										
+                                          <button type="submit"  class="btn btn-primary" name="modifier" value="modifier">Modifier</button>
+                                          <button type="reset" class="btn">Annuler</button>
                                         </div>
                                       </fieldset>
                                     </form>
@@ -375,13 +473,14 @@ foreach($listeProduit as $row){
                      <div class="row-fluid">
                         <!-- block -->
                         <div class="block">
+
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Promotion</div>
+                                <div class="muted pull-left">Supprimer Commande</div>
                             </div>
                             <div class="block-content collapse in">
-                                <div class="span12">
-                                                <form class="form-horizontal" method="POST" action="views/supprimerPromotion.php">
-                                                    <?php 
+
+                                 <form method="POST" action="views/supprimerCommandef.php">
+                                     <?php 
                                     if(isset($_GET["operation"]) && $_GET["operation"]=="oksupp"){
                                         echo '<div class="alert alert-success">
                             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -389,42 +488,47 @@ foreach($listeProduit as $row){
                             The operation completed successfully</div>';
                                     }
                                     ?>
+                                <div class="span12">
                                       <fieldset>
-                                        <legend>Supprimer Promotion</legend>
+                                        <legend>Supprimer Commande</legend>
                                         <div class="control-group">
-                                          <label class="control-label" for="select01">Reference Du Produit</label>
+                                          <label class="control-label" for="select01">Reference Commande<span class="required">*</span></label>
                                           <div class="controls">
-                                             <select  class="chzn-select" name="Referenceproduit" required>
-                                               <?PHP
-$Produit1P=new ProduitP();
-$listeProduit=$Produit1P->afficherProduits();
+                                            <select id="select01" class="chzn-select"name="referenceC">
+                                               
+ <?PHP
+
+$Commande1C=new CommandefC();
+$listecommandef=$Commande1C->afficherCommandef();
 
 ?>
 
 <?PHP
-foreach($listeProduit as $row){
+foreach($listecommandef as $row){
     ?>
-    <tr>
-    <td><?PHP echo "<option value='".$row['Referenceproduit']."'>".$row['Referenceproduit']."</option>"; ?></td>
-    </tr>
+
+<?PHP echo "<option value='".$row['referenceC']."' class='active-result'>".$row['referenceC']."</option>"; ?>
+
     <?PHP
 }
 ?>
                                             </select>
-                                          </div>
                                         </div>
-                                        <div class="form-actions">
-                                          <button type="submit" onclick="envoyersupp();" class="btn btn-primary">Supprimer</button>
+                                          </div>
+                                      </div>
+                                          <br />
+                                                                             <div class="form-actions">
+                                          <button type="submit" onclick="notifyMe()" name="supprimer" value="supprimer"  class="btn btn-primary">Supprimer</button>
                                           <button type="reset" class="btn">Annuler</button>
                                         </div>
                                       </fieldset>
                                     </form>
 
                                 </div>
-                            </div>
                         </div>
-                        <!-- /block -->
                     </div>
+                        <!-- /block -->
+                </div>
 
         <!--/.fluid-container-->
         <link href="vendors/datepicker.css" rel="stylesheet" media="screen">
@@ -482,6 +586,7 @@ foreach($listeProduit as $row){
             });
         });
         </script>
-    </body>
 <?php } ?>
+    </body>
+
 </html>

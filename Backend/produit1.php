@@ -13,6 +13,8 @@ else {
     
     <head>
         <title>Produit</title>
+<div id="MicrosoftTranslatorWidget" style="width: 200px; min-height: 83px; border-color: #0A560F; background-color: #1AAB1F;"><noscript><a href="http://www.microsofttranslator.com/bv.aspx?a=http%3a%2f%2fproprio-oursons.e-monsite.com%2f">Traduire cette page</a><br />Fournie par <a href="http://www.bing.com/translator">Microsoft® Translator</a></noscript></div> <script type="text/javascript"> /* <![CDATA[ */ setTimeout(function() { var s = document.createElement("script"); s.type = "text/javascript"; s.charset = "UTF-8"; s.src = ((location && location.href && location.href.indexOf('https') == 0) ? "https://ssl.microsofttranslator.com" : "http://www.microsofttranslator.com" ) + "/ajax/v2/widget.aspx?mode=manual&from=fr&layout=ts"; var p = document.getElementsByTagName('head')[0] || document.documentElement; p.insertBefore(s, p.firstChild); }, 0); /* ]]> */ </script>
+
         <!-- Bootstrap -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
@@ -55,6 +57,7 @@ else {
                         <ul class="nav">
                             <li class="active">
                                 <a href="#">Dashboard</a>
+
                             </li>
                             <li class="dropdown">
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b>
@@ -141,64 +144,18 @@ else {
             <div class="row-fluid">
                 <div class="span3" id="sidebar">
                     <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
-                        <li >
-                            <a href="index.html"><i class="icon-chevron-right"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="calendar.html"><i class="icon-chevron-right"></i> Calendar</a>
-                        </li>
-                        <li>
-                            <a href="stats.html"><i class="icon-chevron-right"></i> Statistics (Charts)</a>
-                        </li>
-                        <li>
-                            <a href="form.html"><i class="icon-chevron-right"></i> Forms</a>
-                        </li>
-                        <li>
-                            <a href="tables.html"><i class="icon-chevron-right"></i> Tables</a>
-                        </li>
-                        <li>
-                            <a href="buttons.html"><i class="icon-chevron-right"></i> Buttons & Icons</a>
-                        </li>
-                        <li>
-                            <a href="editors.html"><i class="icon-chevron-right"></i> WYSIWYG Editors</a>
-                        </li>
-                        
-                        <li>
-                            <a href="interface.html"><i class="icon-chevron-right"></i> UI & Interface</a>
+                         <li >
+                            <a href="Fournisseur.php"> Fournisseur</a>
                         </li>
 
-
-                         <li class="active">
-                            <a href="produit1.php"><span class="badge badge-success pull-right">731</span> Product</a>
+                         <li >
+                            <a href="Commandef.php"> Commandes Fournisseur</a>
                         </li>
-
-                         <li>
-                            <a href="promotion1.php"><span class="badge badge-warning pull-right">235</span> Promotion</a>
+                         <li class="active" >
+                            <a href="produit1.php"> Produit</a>
                         </li>
-
-                        <li >
-                            <a href="evenement.html"><span class="badge badge-success pull-right">731</span> Events</a>
-                        </li>
-                        <li>
-                            <a href="livraison.html"><span class="badge badge-success pull-right">812</span> Delivery</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge badge-info pull-right">27</span> Clients</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge badge-info pull-right">1,234</span> Users</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge badge-info pull-right">2,221</span> Messages</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge badge-info pull-right">11</span> Reports</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge badge-important pull-right">83</span> Errors</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge badge-warning pull-right">4,231</span> Logs</a>
+                          <li >
+                            <a href="promotion1.php"> Promotion</a>
                         </li>
                     </ul>
                 </div>
@@ -346,8 +303,38 @@ else {
                                           </div>
                                         </div>
                                         <div class="form-actions">
+
+<script type="text/javascript">
+  function notifyMe() {
+  if (!("Notification" in window)) {
+    alert("This browser does not support system notifications");
+  }
+  else if (Notification.permission === "granted") {
+    notify();
+  }
+  else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      if (permission === "granted") {
+        notify();
+      }
+    });
+  }
+  
+  function notify() {
+    var notification = new Notification('Avis', {
+      icon: 'images/logo_casa_sport.png',
+      body: "Opération annulée",
+
+    });
+
+    setTimeout(notification.close.bind(notification), 7000); 
+  }
+
+}
+</script>
+
                                           <button  type="submit" name="ajouter" value="ajouter" onclick="return verifsolde();" class="btn btn-primary">Ajouter</button>
-                                          <button type="reset" class="btn">Annuler</button>
+                                          <button type="reset" class="btn" onclick="notifyMe();">Annuler</button>
                                         </div>
                                       </fieldset>
                                 </form>
@@ -398,6 +385,7 @@ foreach($listeProduit as $row){
     ?>
 
 <?PHP echo "<option value='".$row['Referenceproduit']."' class='active-result'>".$row['Referenceproduit']."</option>"; ?>
+
 
     <?PHP
 }
