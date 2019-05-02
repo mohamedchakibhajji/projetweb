@@ -8,14 +8,14 @@ function afficherProduit ($Produit){
 		echo "Marque: ".$Produit->getMarque()."<br>";
 		echo "Prix: ".$Produit->getprix()."<br>";
 		echo "Date De Publication: ".$Produit->getDatedepublication()."<br>";
-		echo "New: ".$Produit->getNew()."<br>";
+		echo "quantite: ".$Produit->getquantite()."<br>";
 		echo "Boutique: ".$Produit->getBoutique()."<br>";
 		echo "Photo de produit: ".$Produit->getphotodeproduit()."<br>";
 		echo "Description : ".$Produit->getdescription()."<br>";
 	}
 	
 	function ajouterProduit($Produit){
-		$sql="insert into produit (	Nomproduit,Referenceproduit,Categorie,Marque,prix,Datedepublication,New,Boutique,photodeproduit,description) values (:Nomproduit, :Referenceproduit,:Categorie,:Marque,:prix,:Datedepublication,:New,:Boutique,:photodeproduit,:description)";
+		$sql="insert into produit (	Nomproduit,Referenceproduit,Categorie,Marque,prix,Datedepublication,quantite,Boutique,photodeproduit,description) values (:Nomproduit, :Referenceproduit,:Categorie,:Marque,:prix,:Datedepublication,:quantite,:Boutique,:photodeproduit,:description)";
 		$db = config::getConnexion();
 		try{
         $req=$db->prepare($sql);//prépare la requete sql à etre exécuté par
@@ -26,7 +26,7 @@ function afficherProduit ($Produit){
         $Marque=$Produit->getMarque();
         $prix=$Produit->getprix();
         $Datedepublication=$Produit->getDatedepublication();
-        $New=$Produit->getNew();
+        $quantite=$Produit->getquantite();
         $Boutique=$Produit->getBoutique();
         $photodeproduit=$Produit->getphotodeproduit();
         $description=$Produit->getdescription();
@@ -36,7 +36,7 @@ function afficherProduit ($Produit){
 		$req->bindValue(':Marque',$Marque);
 		$req->bindValue(':prix',$prix);
 		$req->bindValue(':Datedepublication',$Datedepublication);
-		$req->bindValue(':New',intval($New));
+		$req->bindValue(':quantite',$quantite);
 		$req->bindValue(':Boutique',$Boutique);
 		$req->bindValue(':photodeproduit',$photodeproduit);
 		$req->bindValue(':description',$description);
@@ -53,7 +53,19 @@ function afficherProduit ($Produit){
         }
 		
 	}
-	
+
+	function getReference($Referenceproduit){
+	$sql="SELECT * from Produit where Referenceproduit=$Referenceproduit";
+		$db = config::getConnexion();
+		try{
+		$compte=$db->query($sql);
+		return $compte;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
 	function afficherProduits(){
 		$sql="SElECT * From Produit";
 		$db = config::getConnexion();
@@ -65,6 +77,35 @@ function afficherProduit ($Produit){
             die('Erreur: '.$e->getMessage());
         }	
 	}
+
+	function produithomme(){
+		$sql="SELECT * From Produit where Categorie like 'Vêtements Homme'";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }	
+	}
+
+	function imprimerpdf(){
+$pdf=new FPDF_plus();
+ 
+$pdf->SetFont('Arial','',12);
+ 
+$pdf->AddPage();
+ 
+$resul_nom = mysql_query('SELECT * From Produit where quantite<5') or die ("requête impossible" . mysql_error());
+$row_nom = mysql_fetch_row($resul_nom);
+$pdf->Cell("","",$row_nom[1],"","","C");
+$pdf->Ln(3);
+$pdf->Image("../images/logo_casa_sport.png",10,8,33);
+	}
+
+
+
 	function supprimerProduit($Referenceproduit){
 		$sql="DELETE FROM Produit where Referenceproduit= :Referenceproduit";
 		$db = config::getConnexion();
@@ -138,6 +179,18 @@ ON (produit.Referenceproduit = promotion.Referenceproduit)";
             die('Erreur: '.$e->getMessage());
         }
 	}
+
+	function modifierPrixs($id){
+		$sql="SELECT produit.Referenceproduit ,produit.prix, promotion.solde FROM produit,promotion where produit.Referenceproduit = promotion.Referenceproduit and promotion.Referenceproduit=".$id;
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
 		function rechercherProduit($Referenceproduit){
 $sql="SELECT * from produit where Referenceproduit=$Referenceproduit";
 		$db = config::getConnexion();
@@ -151,7 +204,7 @@ $sql="SELECT * from produit where Referenceproduit=$Referenceproduit";
 	}
 
 function trierProduit(){
-$sql="SELECT * from produit ORDER BY prix DESC";
+$sql="SELECT * from produit where quantite>0 ORDER BY prix DESC ";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);
@@ -163,7 +216,7 @@ $sql="SELECT * from produit ORDER BY prix DESC";
 	}
 
 	function trierProduitcroi(){
-$sql="SELECT * from produit ORDER BY prix";
+$sql="SELECT * from produit where quantite>0 ORDER BY prix";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);
@@ -175,19 +228,7 @@ $sql="SELECT * from produit ORDER BY prix";
 	}
 	
 	function Produitfronttricrois(){
-$sql="SELECT * from produit ORDER BY prix ";
-		$db = config::getConnexion();
-		try{
-		$liste=$db->query($sql);
-		return $liste;
-		}
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
-        }
-	}
-	
-	function new(){
-$sql="SELECT * from produit where new= 1";
+$sql="SELECT * from produit where quantite>0 ORDER BY prix ";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);
@@ -198,8 +239,46 @@ $sql="SELECT * from produit where new= 1";
         }
 	}
 
-	function afficherProduithomme(){
-		$sql="SElECT * From Produit where Categorie like : 'Vêtements Homme'";
+	function enstock(){
+$sql="SELECT count(*) from produit where quantite>5";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
+	function horsstock(){
+$sql="SELECT count(*) from produit where quantite<5";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
+	function stock(){
+$sql="SELECT count(*) from produit";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
+	
+
+	function produitmateriel(){
+		$sql="SELECT * From Produit where Categorie like 'Matériel'";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);
@@ -208,6 +287,176 @@ $sql="SELECT * from produit where new= 1";
         catch (Exception $e){
             die('Erreur: '.$e->getMessage());
         }	
+	}
+	
+	function produitfemme(){
+		$sql="SELECT * From Produit where Categorie like 'Vêtements Femme'";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }	
+	}
+
+
+	function newhomme(){
+$sql="SELECT * from produit where Datedepublication<Datedepublication+1 and Categorie like 'Vêtements Homme'";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
+
+	function newfemme(){
+$sql="SELECT * from produit where Datedepublication<Datedepublication+2 and Categorie like 'Vêtements Femme'  ";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
+	function newmateriel(){
+$sql="SELECT * from produit where Datedepublication<Datedepublication+2 and Categorie like 'Matériel' ";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
+function triermateriel(){
+$sql="SELECT * from produit  where Categorie like 'Matériel'  ORDER BY prix DESC";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
+function triermaterielcroissant(){
+$sql="SELECT * from produit where Categorie like 'Matériel'  ORDER BY prix";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
+function trierproducthomme(){
+$sql="SELECT * from produit  where Categorie like 'Vêtements Homme' ORDER BY prix DESC";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
+	function trierproducthommecroissant(){
+$sql="SELECT * from produit where Categorie like 'Vêtements Homme'  ORDER BY prix";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+  
+  function trierproducfemme(){
+$sql="SELECT * from produit  where Categorie like 'Vêtements Femme'   ORDER BY prix DESC";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
+	function trierproductFemmecroissant(){
+$sql="SELECT * from produit where Categorie like 'Vêtements Femme'   ORDER BY prix";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+  
+  function  accessoires(){
+$sql="SELECT * from produit where Categorie like 'Accessoires'";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
+	 function  tricoiaccessoires(){
+$sql="SELECT * from produit where Categorie like 'Accessoires'  ORDER BY prix";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+ 
+  function  tridecroiaccessoires(){
+$sql="SELECT * from produit where Categorie like 'Accessoires'  ORDER BY prix DESC";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
+	 function  newaccessoires(){
+$sql="SELECT * from produit where Categorie like 'Accessoires'  and Datedepublication<Datedepublication+2 ";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
 	}
 
 	function rechercherListeProduit($Referenceproduit){
