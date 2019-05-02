@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+    
+    <!-- Bootstrap JS form CDN -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <!-- jQuery sticky menu -->
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/jquery.sticky.js"></script>
+    
+    <!-- jQuery easing -->
+    <script src="../js/jquery.easing.1.3.min.js"></script>
+    
+    <!-- Main Script -->
+    <script src="../js/main.js"></script>
+    <script src="../js/panier.js"></script>
+    <!-- Slider -->
+    <script type="text/javascript" src="../js/bxslider.min.js"></script>
+    <script type="text/javascript" src="../js/script.slider.js"></script>
+            
+            
+            <div id="id01" class="modal">
+  
+  <div class="modal-content" >
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+
+  <div class="form">
+
+    <p id="Rejoignez-nous">Rejoignez-nous:</p></br>
+
+     
+      
+      <ul class="tab-group">
+        <li class="tab active"><a id="bt" href="#signup">CREER UN COMPTE</a></li>
+        <li class="tab"><a id="bt" href="#login">SE CONNECTER</a></li>
+      
+      </ul> </br></br></br></br></br>
+
+
+      
+      <div class="tab-content">
+
+        <div id="signup">   
+
+
+<form method="POST" action="acceuil.php" >
+
+<p><input id="unpt" placeholder="Nom " name="nom" type="text" required pattern="[A-Za-z].{2,}" x-moz-errormessage="Le nom doit avoir minimum 3 caracteres"> </p>
+<p><input id="unpt" placeholder="Prenom " name="prenom" type="text" required pattern="[A-Za-z].{2,}" x-moz-errormessage="Le prenom doit avoir minimum 3 caracteres"> </p>
+<p id="unpt">Sexe&nbsp;:
+    <INPUT type="radio" name="sexe" value="F" checked>F
+    <INPUT type="radio" name="sexe" value="M">M</p>
+
+<p><input id="unpt" placeholder="CIN " name="CIN" type="number" required min="999999" max="9999999" x-moz-errormessage="Le N° CIN doit avoir minimum 8 caracteres" ></p>
+
+<p><input  id="unpt" placeholder="Email " name="email" type="email" required=""> </p>
+
+<p><input  id="da" placeholder="Date_Naissance " name="date_naissance" type="date" required="" max="<?php echo date('2000-04-06'); ?>" x-moz-errormessage="vous devez avoir 18 ans"  ></p>
+
+<p><input id="unpt" placeholder="Tel_Portable " name="tel_portable" type="number" required min="10000000" max="99999999" x-moz-errormessage="Le numero doit avoir minimum 8 caracteres"> </p>
+
+<p><input id="unpt" placeholder="Adresse " name="adresse" type="text" required pattern="[A-Za-z].{2,}"> </p>
+
+<p><input id="unpt" placeholder="Code_Postal " name="code_postal" type="number" required min="999" max="9999"> </p>
+
+ <p><input id="password1" placeholder="Mot de passe " name="password" type="Password" required  x-moz-errormessage="Le mot de passe doit avoir minimum 6 caracteres" pattern=".{6,}"> </p>
+
+ <p><input id="password2" placeholder="Confirmer mot de passe " name="passwordC" type="Password" required  pattern=".{6,}"> </p>
+
+<button type="submit" name="ajouter"  onclick="verif()" style="border-radius: 5px;" >Enregistrer </button>
+
+
+
+
+
+
+
+</form>
+          </div>
+        
+          <div id="login">   
+          
+          <form action="acceuil1.php" method="post" autocomplete="on">
+
+
+            
+            <p><input id="unpt" placeholder="Adresse E-mail " name="abcd" type="email" required=""> </p> 
+            <p><input id="unpt" placeholder="Mot de passe " name="abcde" type="Password" required=""> </p> </br>
+           
+          
+          
+          <p class="forgot"><a href="forgotPassword.php">Mot de passe oublier mail?</a></p>
+          <p class="forgot"><a href="sms.php">Mot de passe oublier sms?</a></p>
+          
+          <button  class="button button-block"/>SE CONNECTER</button>
+          
+          </form>
+
+        </div>
+        
+      </div><!-- tab-content -->
+      
+  </div> <!-- /form -->
+
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script  src="../js/index.js"></script>
+  <script  src="verif.js"></script>
+  
+</div>
+</div>
+</body>
+</html>
